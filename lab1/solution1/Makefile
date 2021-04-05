@@ -3,13 +3,7 @@ CC = gcc
 
 INC = -I../ -I../../
 # Flags
-CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3
-ifeq ($(CC), gcc)
-	CFLAGS += -march=native
-else
-	CFLAGS += -mcpu=native
-endif
-
+CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -march=native
 LDFLAGS = -lm
 
 # Binary file
