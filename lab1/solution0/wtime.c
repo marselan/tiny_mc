@@ -6,7 +6,11 @@
 double wtime(void)
 {
     struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+    #if __MACH__
+        clock_gettime(CLOCK_MONOTONIC, &ts);
+    #else
+        clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+    #endif
 
     return 1e-9 * ts.tv_nsec + (double)ts.tv_sec;
 }

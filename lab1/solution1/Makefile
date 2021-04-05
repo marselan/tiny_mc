@@ -1,8 +1,9 @@
 # Compilers
 CC = clang
 
+INC = -I../ -I../../
 # Flags
-CFLAGS = -std=c11 -Wall -Wextra -O3 -march=native
+CFLAGS = $(INC) -std=c11 -Wall -Wextra -march=native -O3
 LDFLAGS = -lm
 
 # Binary file

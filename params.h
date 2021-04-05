@@ -3,7 +3,7 @@
 #include <time.h> // time
 
 #ifndef SHELLS
-#define SHELLS 101 // discretization level
+#define SHELLS  101// discretization level
 #endif
 
 #ifndef PHOTONS
