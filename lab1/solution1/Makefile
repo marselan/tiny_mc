@@ -3,7 +3,13 @@ CC = clang
 
 INC = -I../ -I../../
 # Flags
-CFLAGS = $(INC) -std=c11 -Wall -Wextra -march=native -O3
+CFLAGS = $(INC) -std=c11 -Wall -Wextra -mcpu=native -O3
+ifeq ($(CC), gcc)
+	CFLAGS += -march=native
+else
+	CFLAGS += -mcpu=native
+endif
+
 LDFLAGS = -lm
 
 # Binary file
