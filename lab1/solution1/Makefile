@@ -3,7 +3,7 @@ CC = gcc
 
 INC = -I../ -I../../
 # Flags
-CFLAGS = $(INC) -std=c11 -Wall -Wextra -mcpu=native -O3
+CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3
 ifeq ($(CC), gcc)
 	CFLAGS += -march=native
 else
