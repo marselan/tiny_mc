@@ -1,5 +1,5 @@
 # Compilers
-CC = clang
+CC = gcc
 
 INC = -I../ -I../../
 # Flags
