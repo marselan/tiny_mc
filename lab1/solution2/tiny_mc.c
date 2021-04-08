@@ -24,8 +24,8 @@ char t3[] = "CPU version, adapted for PEAGPGPU by Gustavo Castellano"
 
 
 // global state, heat and heat square in each shell
-static float heat[SHELLS];
-static float heat2[SHELLS];
+static float heat[SHELLS];	// arreglo que colecta los lugares donde se va parando el fotón
+static float heat2[SHELLS];	// arreglo que eleva al cuadrado el valor anterior para poder compararlos y ver el error
 
 
 /***
@@ -38,28 +38,28 @@ static void photon(void)
     const float shells_per_mfp = 1e4 / MICRONS_PER_SHELL / (MU_A + MU_S);
 
     /* launch */
-    float x = 0.0f;
-    float y = 0.0f;
-    float z = 0.0f;
-    float u = 0.0f;
-    float v = 0.0f;
-    float w = 1.0f;
-    float weight = 1.0f;
+    float x = 0.0f;		// cartesian coordinate x
+    float y = 0.0f;		// cartesian coordinate y
+    float z = 0.0f;		// cartesian coordinate z
+    float u = 0.0f;		// direction cosine u
+    float v = 0.0f;		// direction cosine v
+    float w = 1.0f;		// direction cosine w
+    float weight = 1.0f;	// photon energy
 
-    float neg_inv_rand_max = -1.0f / (float)RAND_MAX;
-    float d = 1 / ((float)RAND_MAX - 1.0f);
+    float neg_inv_rand_max = -1.0f / (float)RAND_MAX;	// variable declarada para transformar / en *
+    float d = 1 / ((float)RAND_MAX - 1.0f);			// variable declarada para transformar / en *
     for (;;) {
-        float t = -logf(rand() * neg_inv_rand_max ); /* move */
-        x += t * u;
-        y += t * v;
-        z += t * w;
+        float t = -logf(rand() * neg_inv_rand_max ); /* move */	// t:= photon packet propagation distance
+        x += t * u;		// new cartesian coordinate x
+        y += t * v;		// new cartesian coordinate y
+        z += t * w;		// new cartesian coordinate z
 
-        unsigned int shell = sqrtf(x * x + y * y + z * z) * shells_per_mfp; /* absorb */
+        unsigned int shell = sqrtf(powf(x,2) + powf(y,2) + powf(z,2)) * shells_per_mfp; /* absorb */
         if (shell > SHELLS - 1) {
             shell = SHELLS - 1;
         }
-        float a_w = albedo * weight;
-        float added_heat = weight - a_w;
+        float a_w = albedo * weight;		// variable declarada para eliminar redundancia
+        float added_heat = weight - a_w;	// variable declarada para eliminar redundancia
         heat[shell] += added_heat;
         weight = a_w;
 
@@ -67,17 +67,17 @@ static void photon(void)
         
         float xi1, xi2;
         do {
-            xi1 = (rand() << 1) * d;
-            xi2 = (rand() << 1) * d;
-            t = xi1 * xi1 + xi2 * xi2;
+            xi1 = (rand() << 1) * d;		// <<1 hace un shift a la izq para multiplicar por 2 más eficientemente
+            xi2 = (rand() << 1) * d;		// <<1 hace un shift a la izq para multiplicar por 2 más eficientemente
+            t = powf(xi1,2) + powf(xi2,2);
         } while (1.0f < t);
-        float inv_t = 1 / t;
-        u = 2.0f * t - 1.0f;
-        float uu = sqrtf(1.0f - u * u);
+        float inv_t = 1 / t;		
+        u = 2.0f * t - 1.0f;			// variable declarada para transformar / en *
+        float uu = sqrtf(1.0f - powf(u,2));	// variable declarada para eliminar redundancia
         v = xi1 * uu * inv_t;
         w = xi2 * uu * inv_t;
 
-        if (unlikely( weight < 0.001f )) { /* roulette */
+        if (unlikely( weight < 0.001f )) { /* roulette */ // acá decimimos si nos quedamos con el foton o lo descartamos
             if (rand() / (float)RAND_MAX > 0.1f)
                 break;
             weight /= 0.1f;
@@ -85,9 +85,9 @@ static void photon(void)
     }
 }
 
-static void compute_squares() {
+static void compute_squares() {			// funcion para computar cuadrados en un bucle, disminuir el trabajo de la memoria
     for(int i=0; i<SHELLS; i++) {
-        heat2[i] += heat[i] * heat[i]; /* add up squares */
+        heat2[i] += powf(heat[i],2); /* add up squares */
     }
 }
 
@@ -120,13 +120,18 @@ int main(void)
 
     printf("# Radius\tHeat\n");
     printf("# [microns]\t[W/cm^3]\tError\n");
-    float t = 4.0f * M_PI * powf(MICRONS_PER_SHELL, 3.0f) * PHOTONS / 1e12;
+    float mm1 = 1/1e12;		// variable declarada para transformar / en *
+    float mm2 = 1/3.0f;		// variable declarada para transformar / en *
+    float mm3 = 1/PHOTONS;	// variable declarada para transformar / en *
+    float t = 4.0f * M_PI * powf(MICRONS_PER_SHELL, 3.0f) * PHOTONS * mm1;
+    float mm4 = 1/t;
     for (unsigned int i = 0; i < SHELLS - 1; ++i) {
-        printf("%6.0f\t%12.5f\t%12.5f\n", i * (float)MICRONS_PER_SHELL,
-               heat[i] / t / (i * i + i + 1.0 / 3.0),
-               sqrt(heat2[i] - heat[i] * heat[i] / PHOTONS) / t / (i * i + i + 1.0f / 3.0f));
+        float mm5 = 1/ (powf(i,2) + i + 1.0 * mm2);
+	printf("%6.0f\t%12.5f\t%12.5f\n", i * (float)MICRONS_PER_SHELL,
+		heat[i] * mm4 * mm5,
+		sqrt(heat2[i] - powf(heat[i],2) * mm3) * mm4 * mm5);
     }
-    printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] / PHOTONS);
+    printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] * mm3);
     printf("# %lf seconds\n", elapsed);
     printf("# %lf K photons per second\n", 1e-3 * PHOTONS / elapsed);
 
