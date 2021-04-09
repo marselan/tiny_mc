@@ -9,30 +9,31 @@
 #define likely(x)   __builtin_expect((x),1)
 #define unlikely(x) __builtin_expect((x),0)
 
-/**
- * ******************************************************************* Mersenne Twister
- */
+// ******************************************************************** Start Mersenne Twister
+
 #define UPPER_MASK		0x80000000
 #define LOWER_MASK		0x7fffffff
 #define TEMPERING_MASK_B	0x9d2c5680
 #define TEMPERING_MASK_C	0xefc60000
 
+// ******************************************************************** End Mersenne Twister
+ 
 #include "params.h"
 #include "wtime.h"
 
-/**
- * ******************************************************************* Mersenne Twister
- */
+// ******************************************************************** Start Mersenne Twister
+
 #include "mtwister.h"
+
+// ******************************************************************** End Mersenne Twister
+
 
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-/**
- * ******************************************************************* Mersenne Twister
- */
+// ******************************************************************** Start Mersenne Twister
 
 inline static void m_seedRand(MTRand* rand, unsigned long seed) {
 	rand->mt[0] = seed & 0xffffffff;
@@ -43,9 +44,8 @@ inline static void m_seedRand(MTRand* rand, unsigned long seed) {
 	
 } // end m_seedRand()
 
-/**
-* Creates a new random number generator from a given seed.
-*/
+// Creates a new random number generator from a given seed.
+
 MTRand seedRand(unsigned long seed) {
 	MTRand rand;
 	m_seedRand(&rand, seed);
@@ -53,9 +53,8 @@ MTRand seedRand(unsigned long seed) {
 	return rand;
 } // end seedRand()
 
-/**
- * Generates a pseudo-randomly generated long.
- */
+// Generates a pseudo-randomly generated long.
+
 unsigned long genRandLong(MTRand* rand) {
 
 	unsigned long y;
@@ -94,18 +93,15 @@ unsigned long genRandLong(MTRand* rand) {
 	
 } // end genRandLong()
 
-/**
- * Generates a pseudo-randomly generated double in the range [0..1].
- */
+// Generates a pseudo-randomly generated double in the range [0..1].
+
 double genRand(MTRand* rand) {
 
 	return((double)genRandLong(rand) / (unsigned long)0xffffffff);
 	
 } // end genRand()
 
-/**
- * ******************************************************************* End Mersenne Twister
- */
+// ******************************************************************** End Mersenne Twister
 
 char t1[] = "Tiny Monte Carlo by Scott Prahl (http://omlc.ogi.edu)";
 char t2[] = "1 W Point Source Heating in Infinite Isotropic Scattering Medium";
@@ -130,12 +126,12 @@ static void photon(float arreglo_random[], int cantidad)
     const float shells_per_mfp = 1e4 / MICRONS_PER_SHELL / (MU_A + MU_S);
 
     /* launch */
-    float x = 0.0f;		// cartesian coordinate x
-    float y = 0.0f;		// cartesian coordinate y
-    float z = 0.0f;		// cartesian coordinate z
-    float u = 0.0f;		// direction cosine u
-    float v = 0.0f;		// direction cosine v
-    float w = 1.0f;		// direction cosine w
+    float x = 0.0f;			// cartesian coordinate x
+    float y = 0.0f;			// cartesian coordinate y
+    float z = 0.0f;			// cartesian coordinate z
+    float u = 0.0f;			// direction cosine u
+    float v = 0.0f;			// direction cosine v
+    float w = 1.0f;			// direction cosine w
     float weight = 1.0f;	// photon energy
     
     for (int i = 0;;i++) {
@@ -169,10 +165,8 @@ static void photon(float arreglo_random[], int cantidad)
         
         float xi1, xi2;
         do {
-//            xi1 = (rand() << 1) * d;		// <<1 hace un shift a la izq para multiplicar por 2 más eficientemente
-//            xi2 = (rand() << 1) * d;		// <<1 hace un shift a la izq para multiplicar por 2 más eficientemente
-			xi1 = nro_random * 2;
-			xi1 = nro_random * 2;
+			xi1 = 2.0f * nro_random - 1.0f;
+			xi1 = 2.0f * nro_random - 1.0f;
             t = powf(xi1,2) + powf(xi2,2);
         } while (1.0f < t);
         float inv_t = 1 / t;		
@@ -182,7 +176,6 @@ static void photon(float arreglo_random[], int cantidad)
         w = xi2 * uu * inv_t;
 
         if (unlikely( weight < 0.001f )) { /* roulette */ // acá decimimos si nos quedamos con el foton o lo descartamos
-            //if (rand() / (float)RAND_MAX > 0.1f)
             if (nro_random > 0.1f)
                 break;
             weight /= 0.1f;
@@ -213,26 +206,20 @@ int main(void)
     // start timer
     double start = wtime();
     
-/**
- * ******************************************************************* Mersenne Twister
- */
-	MTRand r = seedRand(1337);
-	int cantidad = PHOTONS;
-	float arreglo_random[ cantidad ];
+// ******************************************************************** Start Mersenne Twister
 
-	for(int i=0; i < cantidad;i++) {
-	
+	MTRand r = seedRand(SEED);
+	float arreglo_random[ PHOTONS ];
+
+	for(int i=0; i < PHOTONS;i++) {		// acá se crea el arreglo con los # random
 		arreglo_random[ i ] = genRand(&r);
 	}
 	
 	for (int i = 0; i < PHOTONS; ++i) {
-		
-		photon(arreglo_random, cantidad);
+		photon(arreglo_random, PHOTONS); // acá se utilizan los # random
 	}
 
-/**
- * ******************************************************************* End Mersenne Twister
- */
+// ******************************************************************** End Mersenne Twister
 
     compute_squares();
     // stop timer
