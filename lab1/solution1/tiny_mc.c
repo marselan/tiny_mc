@@ -27,9 +27,10 @@ char t3[] = "CPU version, adapted for PEAGPGPU by Gustavo Castellano"
 static float heat[SHELLS];
 static float heat2[SHELLS];
 
+static float factor = 1.0f / (float)RAND_MAX;
 
 static inline float next() {
-    return rand() / (float)RAND_MAX;
+    return rand() * factor;
 }
 
 /***
