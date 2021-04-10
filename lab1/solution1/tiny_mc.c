@@ -28,6 +28,10 @@ static float heat[SHELLS];
 static float heat2[SHELLS];
 
 
+static inline float next() {
+    return rand() / (float)RAND_MAX;
+}
+
 /***
  * Photon
  ***/
@@ -46,10 +50,8 @@ static void photon(void)
     float w = 1.0f;
     float weight = 1.0f;
 
-    float neg_inv_rand_max = -1.0f / (float)RAND_MAX;
-    float d = 1 / ((float)RAND_MAX - 1.0f);
     for (;;) {
-        float t = -logf(rand() * neg_inv_rand_max ); /* move */
+        float t = -logf(next()); /* move */
         x += t * u;
         y += t * v;
         z += t * w;
@@ -67,8 +69,8 @@ static void photon(void)
         
         float xi1, xi2;
         do {
-            xi1 = (rand() << 1) * d;
-            xi2 = (rand() << 1) * d;
+            xi1 = 2.0f * next() - 1.0f;
+            xi2 = 2.0f * next() - 1.0f;
             t = xi1 * xi1 + xi2 * xi2;
         } while (1.0f < t);
         float inv_t = 1 / t;
@@ -78,7 +80,7 @@ static void photon(void)
         w = xi2 * uu * inv_t;
 
         if (unlikely( weight < 0.001f )) { /* roulette */
-            if (rand() / (float)RAND_MAX > 0.1f)
+            if (next() > 0.1f)
                 break;
             weight /= 0.1f;
         }
