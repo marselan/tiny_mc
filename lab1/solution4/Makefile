@@ -3,8 +3,8 @@ CC = gcc
 
 INC = -I../ -I../../
 # Flags
-CFLAGS = $(INC) -std=c11 -Wall -Wextra -fopenmp -O3 -march=native
-LDFLAGS = -lm -lgomp
+CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -march=native
+LDFLAGS = -lm
 
 # Binary file
 TARGET = tiny_mc

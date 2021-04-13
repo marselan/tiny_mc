@@ -16,6 +16,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 char t1[] = "Tiny Monte Carlo by Scott Prahl (http://omlc.ogi.edu)";
 char t2[] = "1 W Point Source Heating in Infinite Isotropic Scattering Medium";
@@ -28,6 +29,15 @@ static float heat[SHELLS];
 static float heat2[SHELLS];
 
 static float factor = 1.0f / (float)RAND_MAX;
+
+static const uint64_t a = 1103515245;
+static const uint64_t c = 12345;
+static const uint64_t m = (uint64_t)2<<30;
+static const uint64_t m_1 = m - (uint64_t)1;
+static const float factor2 = 1.0f / (float)m_1;
+#define GENERATOR_COUNT 4
+static int rnd[GENERATOR_COUNT];
+
 
 static inline float next() {
     return rand() * factor;
@@ -52,7 +62,8 @@ static void photon(void)
     float weight = 1.0f;
 
     for (;;) {
-        float t = -logf(next()); /* move */
+        rnd[0] = (a * rnd[0] + c) % m;
+        float t = -logf((float)rnd[0] * factor2); /* move */
         x += t * u;
         y += t * v;
         z += t * w;
@@ -70,8 +81,10 @@ static void photon(void)
         
         float xi1, xi2;
         do {
-            xi1 = 2.0f * next() - 1.0f;
-            xi2 = 2.0f * next() - 1.0f;
+            rnd[1] = (a * rnd[1] + c) % m;
+            rnd[2] = (a * rnd[2] + c) % m;
+            xi1 = 2.0f * ((float)rnd[1] * factor2) - 1.0f;
+            xi2 = 2.0f * ((float)rnd[2] * factor2) - 1.0f;
             t = xi1 * xi1 + xi2 * xi2;
         } while (1.0f < t);
         float inv_t = 1 / t;
@@ -81,7 +94,8 @@ static void photon(void)
         w = xi2 * uu * inv_t;
 
         if (unlikely( weight < 0.001f )) { /* roulette */
-            if (next() > 0.1f)
+            rnd[3] = (a * rnd[3] + c) % m;
+            if (((float)rnd[1] * factor2) > 0.1f)
                 break;
             weight /= 0.1f;
         }
@@ -109,6 +123,9 @@ int main(void)
 
     // configure RNG
     srand(SEED);
+    for(int g=0; g<GENERATOR_COUNT; g++) {
+        rnd[g] = rand();
+    }
     // start timer
     double start = wtime();
     // simulation
@@ -120,7 +137,7 @@ int main(void)
     double end = wtime();
     assert(start <= end);
     double elapsed = end - start;
-    /*
+/*
     printf("# Radius\tHeat\n");
     printf("# [microns]\t[W/cm^3]\tError\n");
     float t = 4.0f * M_PI * powf(MICRONS_PER_SHELL, 3.0f) * PHOTONS / 1e12;
@@ -131,8 +148,8 @@ int main(void)
                sqrt(heat2[i] - heat[i] * heat[i] / PHOTONS) / t / (i * i + i + 1.0f / 3.0f));
     }
     printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] / PHOTONS);
-    */
-    //printf("# %lf seconds\n", elapsed);
+    printf("# %lf seconds\n", elapsed);
+*/
     printf("# %lf K photons per second\n", 1e-3 * PHOTONS / elapsed);
 
     return 0;
