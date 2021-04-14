@@ -102,10 +102,10 @@ static void compute_squares() {
 int main(void)
 {
     // heading
-    printf("# %s\n# %s\n# %s\n", t1, t2, t3);
-    printf("# Scattering = %8.3f/cm\n", MU_S);
-    printf("# Absorption = %8.3f/cm\n", MU_A);
-    printf("# Photons    = %8d\n#\n", PHOTONS);
+    //printf("# %s\n# %s\n# %s\n", t1, t2, t3);
+    //printf("# Scattering = %8.3f/cm\n", MU_S);
+    //printf("# Absorption = %8.3f/cm\n", MU_A);
+    //printf("# Photons    = %8d\n#\n", PHOTONS);
 
     // configure RNG
     srand(SEED);
@@ -120,7 +120,7 @@ int main(void)
     double end = wtime();
     assert(start <= end);
     double elapsed = end - start;
-
+/*
     printf("# Radius\tHeat\n");
     printf("# [microns]\t[W/cm^3]\tError\n");
     float t = 4.0f * M_PI * powf(MICRONS_PER_SHELL, 3.0f) * PHOTONS / 1e12;
@@ -132,6 +132,7 @@ int main(void)
     printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] / PHOTONS);
     printf("# %lf seconds\n", elapsed);
     printf("# %lf K photons per second\n", 1e-3 * PHOTONS / elapsed);
-
+*/
+    printf("%d\t%lf\n", PHOTONS, 1e-3 * PHOTONS / elapsed);
     return 0;
 }
