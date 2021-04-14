@@ -1,7 +1,9 @@
 #!/bin/bash
+rm -f results.dat
 make clean
 make
 for t in {1..20};
 do
-    ./tiny_mc
+    ./tiny_mc >> results.dat 
 done
+cat results.dat
