@@ -1,0 +1,9 @@
+
+gnuplot> set xlabel 'photon count'
+gnuplot> set ylabel 'photons/second'
+gnuplot> unset key
+
+
+gnuplot> set logscale x 2
+gnuplot> plot 'averages.dat' with lines lt rgb 'red' lw 3
+
