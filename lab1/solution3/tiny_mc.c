@@ -28,20 +28,12 @@ char t3[] = "CPU version, adapted for PEAGPGPU by Gustavo Castellano"
 static float heat[SHELLS];
 static float heat2[SHELLS];
 
-static float factor = 1.0f / (float)RAND_MAX;
-
 static const uint64_t a = 1103515245;
 static const uint64_t c = 12345;
 static const uint64_t m = (uint64_t)2<<30;
-static const uint64_t m_1 = m - (uint64_t)1;
-static const float factor2 = 1.0f / (float)m_1;
+static const float fm = (float)m;
 #define GENERATOR_COUNT 4
-static int rnd[GENERATOR_COUNT];
-
-
-static inline float next() {
-    return rand() * factor;
-}
+static uint64_t rnd[GENERATOR_COUNT];
 
 /***
  * Photon
@@ -63,7 +55,7 @@ static void photon(void)
 
     for (;;) {
         rnd[0] = (a * rnd[0] + c) % m;
-        float t = -logf((float)rnd[0] * factor2); /* move */
+        float t = -logf((float)rnd[0] / fm); /* move */
         x += t * u;
         y += t * v;
         z += t * w;
@@ -83,8 +75,8 @@ static void photon(void)
         do {
             rnd[1] = (a * rnd[1] + c) % m;
             rnd[2] = (a * rnd[2] + c) % m;
-            xi1 = 2.0f * ((float)rnd[1] * factor2) - 1.0f;
-            xi2 = 2.0f * ((float)rnd[2] * factor2) - 1.0f;
+            xi1 = 2.0f * ((float)rnd[1] / fm) - 1.0f;
+            xi2 = 2.0f * ((float)rnd[2] / fm) - 1.0f;
             t = xi1 * xi1 + xi2 * xi2;
         } while (1.0f < t);
         float inv_t = 1 / t;
@@ -95,7 +87,7 @@ static void photon(void)
 
         if (unlikely( weight < 0.001f )) { /* roulette */
             rnd[3] = (a * rnd[3] + c) % m;
-            if (((float)rnd[1] * factor2) > 0.1f)
+            if (((float)rnd[3] / fm) > 0.1f)
                 break;
             weight /= 0.1f;
         }
