@@ -149,6 +149,7 @@ int main(void)
     assert(start <= end);
     double elapsed = end - start;
 
+/*
     printf("# Radius\tHeat\n");
     printf("# [microns]\t[W/cm^3]\tError\n");
     float mm1 = 1/1e12;		// variable declarada para transformar / en *
@@ -165,6 +166,8 @@ int main(void)
     printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] * mm3);
     printf("# %lf seconds\n", elapsed);
     printf("# %lf K photons per second\n", 1e-3 * PHOTONS / elapsed);
+*/    
+	printf("%d\t%lf\n", PHOTONS, 1e-3 * PHOTONS / elapsed);
 
     return 0;
 }
