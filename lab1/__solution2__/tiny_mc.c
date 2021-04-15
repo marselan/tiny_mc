@@ -36,26 +36,18 @@ static float heat[SHELLS];	// arreglo que colecta los lugares donde se va parand
 static float heat2[SHELLS];	// arreglo que eleva al cuadrado el valor anterior para poder compararlos y ver el error
 
 
-// next random number
-static float next(float arreglo_random[], int cantidad, int* ptr_nro_random) {
-    if (*ptr_nro_random == cantidad - 1){
-		*ptr_nro_random = 0;		
-	}
-	else {
-		*ptr_nro_random = *ptr_nro_random + 1;
-	}
-    return arreglo_random[ *ptr_nro_random ];
-}
+    
+
 
 /***
  * Photon
  ***/
 
-static void photon(float arreglo_random[], int cantidad)
+static void photon()
 {
-    int ptr_nro_random = 0;
     const float albedo = MU_S / (MU_S + MU_A);
     const float shells_per_mfp = 1e4 / MICRONS_PER_SHELL / (MU_A + MU_S);
+    MTRand r = seedRand(SEED);
 
     /* launch */
     float x = 0.0f;			// cartesian coordinate x
@@ -68,7 +60,7 @@ static void photon(float arreglo_random[], int cantidad)
     
     for (;;) {
 	
-		float t = -logf(next(arreglo_random, cantidad, &ptr_nro_random)); /* move */	// t:= photon packet propagation distance
+		float t = -logf(genRand(&r)); /* move */	// t:= photon packet propagation distance
         x += t * u;		// new cartesian coordinate x
         y += t * v;		// new cartesian coordinate y
         z += t * w;		// new cartesian coordinate z
@@ -87,8 +79,8 @@ static void photon(float arreglo_random[], int cantidad)
         
         float xi1, xi2;
         do {
-			xi1 = 2.0f * next(arreglo_random, cantidad, &ptr_nro_random) - 1.0f;
-			xi2 = 2.0f * next(arreglo_random, cantidad, &ptr_nro_random) - 1.0f;
+			xi1 = 2.0f * genRand(&r) - 1.0f;
+			xi2 = 2.0f * genRand(&r) - 1.0f;
             t = powf(xi1,2) + powf(xi2,2);
         } while (1.0f < t);
         float inv_t = 1 / t;		
@@ -98,7 +90,7 @@ static void photon(float arreglo_random[], int cantidad)
         w = xi2 * uu * inv_t;
 
         if (unlikely( weight < 0.001f )) { /* roulette */ // acá decimimos si nos quedamos con el foton o lo descartamos
-            if (next(arreglo_random, cantidad, &ptr_nro_random) > 0.1f)
+            if (genRand(&r) > 0.1f)
                 break;
             weight /= 0.1f;
         }
@@ -119,26 +111,20 @@ static void compute_squares() {			// funcion para computar cuadrados en un bucle
 int main(void)
 {
     // heading
+    /*
     printf("# %s\n# %s\n# %s\n", t1, t2, t3);
     printf("# Scattering = %8.3f/cm\n", MU_S);
     printf("# Absorption = %8.3f/cm\n", MU_A);
     printf("# Photons    = %8d\n#\n", PHOTONS);
 
- 
+ */
     // start timer
     double start = wtime();
     
 // ******************************************************************** Start Mersenne Twister
 
-	MTRand r = seedRand(SEED);
-	float arreglo_random[ PHOTONS ];
-
-	for(int i=0; i < PHOTONS;i++) {		// acá se crea el arreglo con los # random
-		arreglo_random[ i ] = genRand(&r);
-	}
-	
 	for (int i = 0; i < PHOTONS; ++i) {
-		photon(arreglo_random, PHOTONS); // acá se utilizan los # random
+		photon(); // acá se utilizan los # random
 	}
 
 // ******************************************************************** End Mersenne Twister
@@ -167,7 +153,7 @@ int main(void)
     printf("# %lf seconds\n", elapsed);
     printf("# %lf K photons per second\n", 1e-3 * PHOTONS / elapsed);
 */    
-	printf("%d\t%lf\n", PHOTONS, 1e-3 * PHOTONS / elapsed);
+	printf("%f\t%lf\n", (float)PHOTONS, 1e-3 * PHOTONS / elapsed);
 
     return 0;
 }
