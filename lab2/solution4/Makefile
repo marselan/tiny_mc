@@ -21,4 +21,3 @@ $(TARGET): $(C_OBJS)
 
 clean:
 	rm -f $(TARGET) *.o
-
