@@ -1,9 +1,11 @@
 # Compilers
-CC = gcc-10
+# CC = gcc-10
+CC = clang-11
 
 INC = -I../ -I../../
 # Flags
-CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -march=native -ftree-vectorize -fopt-info-vec -fopt-info-vec-missed
+CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -march=native -mavx -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize 
+#CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -march=native -ftree-vectorize -fopt-info-vec -fopt-info-vec-missed
 LDFLAGS = -lm
 
 # Binary file
