@@ -34,13 +34,13 @@ static float heat2[SHELLS];
 __m256i a;
 __m256i c;
 __m128i s;
-__m128 u; // u = [ u1 u2 u3 u4 ] con ui float de 32 bits o 4 bytes (SSE)
+__m128 u;
 
 __m256i rnd[GENERATOR_COUNT];
 __m128 rndf[GENERATOR_COUNT];
 __m128 t;
 
-__m128 sqrt2_vec;
+__m128 uu;
 
 static inline void next(int i)
 {
@@ -99,7 +99,7 @@ static inline void intrin_sqrt2()
 
     // Compute the square root of packed single-precision (32-bit) floating-point elements in a, and store the results in dst.
     //__m128 _mm_sqrt_ps (__m128 a);
-    sqrt2_vec = _mm_sqrt_ps(partial); // sqrt2_vec = [ sqrt(1.0f-u1^2) sqrt(1.0f-u2^2) sqrt(1.0f-u3^2) sqrt(1.0f-u4^2) ]
+    uu = _mm_sqrt_ps(partial); // sqrt2_vec = [ sqrt(1.0f-u1^2) sqrt(1.0f-u2^2) sqrt(1.0f-u3^2) sqrt(1.0f-u4^2) ]
 }
 /*
  * FIN DE FUNCIÓN INTRINSICS LOGARITMO
@@ -125,6 +125,10 @@ static void photon(void)
 
     __m128 one = _mm_set_ps1(1.0f);
     __m128 two = _mm_set_ps1(2.0f);
+    __m128 z1  = _mm_set_ps1(0.1f);
+    __m128 zz1 = _mm_set_ps1(0.001f);
+
+    int mask = 0;
 
     for (;;) {
 
@@ -163,21 +167,44 @@ static void photon(void)
             mm = _mm_movemask_ps(gtone) | mm;
         } while (mm != 0x000F);
         //} while (1.0f < t);
-        /*
-        float inv_t = 1 / t;
-        u = 2.0f * t - 1.0f;
-        float uu = sqrtf(1.0f - u * u);
-        v = xi1 * uu * inv_t;
-        w = xi2 * uu * inv_t;
-
-        if (unlikely( weight < 0.001f )) { // roulette
+        
+        __m128 inv_t = _mm_div_ps(t, one);
+        u = _mm_fmsub_ps(two, t, one);
+        
+        intrin_sqrt2();
+        v = _mm_mul_ps(xi1, uu);
+        v = _mm_mul_ps(v, inv_t);
+        
+        w = _mm_mul_ps(xi2, uu);
+        w = _mm_mul_ps(w, inv_t);
+     
+        mask = _mm_movemask_ps( _mm_cmp_ps(zz1, weight, _CMP_GT_OQ) ) | mask;
+        if ( mask != 0 ) {
             next(3);
-            if (((float)rndf[3][0]) > 0.1f)
+            mask = _mm_movemask_ps( _mm_cmp_ps(rndf[3], z1, _CMP_GE_OQ) ) & mask;
+            if ( mask == 0x000F )
                 break;
-            weight /= 0.1f;
+            float w1, w2, w3, w4;
+            if( mask & 0x0001 == 0) {
+                weight[0] = weight[0] * 10.0f;
+            }
+            if( mask & 0x0002 == 0) {
+                weight[1] = weight[1] * 10.0f;
+            }
+            if( mask & 0x0004 == 0) {
+                weight[2] = weight[2] * 10.0f;
+            }
+            if( mask & 0x0008 == 0) {
+                weight[3] = weight[3] * 10.0f;
+            }
+            //weight = _mm_div_ps(weight, z1);
         }
-        */
-        break;
+        //if (unlikely( weight < 0.001f )) { // roulette
+       //     next(3);
+       //     if (((float)rndf[3][0]) > 0.1f)
+       //         break;
+       //     weight /= 0.1f;
+        
     }
 }
 
@@ -213,7 +240,7 @@ int main(void)
     // start timer
     double start = wtime();
     // simulation
-    for (unsigned int i = 0; i < PHOTONS; ++i) {
+    for (unsigned int i = 0; i < PHOTONS / GENERATOR_COUNT; ++i) {
         photon();
     }
     compute_squares();
