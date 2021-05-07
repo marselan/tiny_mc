@@ -57,7 +57,7 @@ static void photon(void)
         rnd[0] = (a * rnd[0] + c) % m;
         
         float xx = (rnd[0] / fm)-1;
-        float t = xx - xx*xx/2 + xx*xx*xx/3 - xx*xx*xx*xx/4 + xx*xx*xx*xx*xx/5 - xx*xx*xx*xx*xx*xx/6 + xx*xx*xx*xx*xx*xx*xx/7 - xx*xx*xx*xx*xx*xx*xx*xx/8;
+        float t = -(xx - xx*xx/2 + xx*xx*xx/3 - xx*xx*xx*xx/4 + xx*xx*xx*xx*xx/5 - xx*xx*xx*xx*xx*xx/6 + xx*xx*xx*xx*xx*xx*xx/7 - xx*xx*xx*xx*xx*xx*xx*xx/8);
      
         x += t * u;
         y += t * v;
