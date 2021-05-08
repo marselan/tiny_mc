@@ -40,7 +40,12 @@ __m256i rnd[GENERATOR_COUNT];
 __m128 rndf[GENERATOR_COUNT];
 __m128 t;
 
+__m128 x;
+__m128 y;
+__m128 z;
 __m128 uu;
+__m128 sq1;
+
 
 static inline void next(int i)
 {
@@ -82,6 +87,25 @@ void random_log()
     t = _mm_set_ps(-wlog[0], -wlog[1], -wlog[2], -wlog[3]);
 }
 
+// función intrin_sqrt1( )
+static inline void intrin_sqrt1()
+{
+    // Multiply packed single-precision (32-bit) floating-point elements in a and b, and store the results in dst.
+    // __m128 _mm_mul_ps (__m128 a, __m128 b)
+    __m128 xx_vec = _mm_mul_ps(x, x); // xx_vec = [ x1^2 x2^2 x3^2 x4^2 ]
+    __m128 yy_vec = _mm_mul_ps(y, y); // yy_vec = [ y1^2 y2^2 y3^2 y4^2 ]
+    __m128 zz_vec = _mm_mul_ps(z, z); // zz_vec = [ z1^2 z2^2 z3^2 z4^2 ]
+    
+    // Add packed single-precision (32-bit) floating-point elements in a and b, and store the results in dst.
+    // __m128 _mm_add_ps (__m128 a, __m128 b)
+    __m128 partial_1 = _mm_add_ps(xx_vec, yy_vec); // partial_1 = [ (x1^2+y1^2) (x2^2+y2^2) (x3^2+y3^2) (x4^2+y4^2) ]
+    __m128 partial_2 = _mm_add_ps(partial_1, zz_vec); // partial_2 = [ (x1^2+y1^2+z1^2) (x2^2+y2^2+z2^2) (x3^2+y3^2+z3^2) (x4^2+y4^2+z4^2) ]
+
+    // Compute the square root of packed single-precision (32-bit) floating-point elements in a, and store the results in dst.
+    //__m128 _mm_sqrt_ps (__m128 a);
+    sq1 = _mm_sqrt_ps(partial_2); // sqrt1_vec = [ sqrt(x1^2+y1^2+z1^2) sqrt(x2^2+y2^2+z2^2) sqrt(x3^2+y3^2+z3^2) sqrt(x4^2+y4^2+z4^2) ]
+}
+
 // función intrin_sqrt( )
 static inline void intrin_sqrt2()
 {
@@ -97,6 +121,7 @@ static inline void intrin_sqrt2()
     // __m128 _mm_sub_ps (__m128 a, __m128 b)
     __m128 partial = _mm_sub_ps(id_vec, uu_vec); // partial = [ (1.0f-u1^2) (1.0f-u2^2) (1.0f-u3^2) (1.0f-u4^2) ]
 
+    partial = _mm_div_ps(partial, t);
     // Compute the square root of packed single-precision (32-bit) floating-point elements in a, and store the results in dst.
     //__m128 _mm_sqrt_ps (__m128 a);
     uu = _mm_sqrt_ps(partial); // sqrt2_vec = [ sqrt(1.0f-u1^2) sqrt(1.0f-u2^2) sqrt(1.0f-u3^2) sqrt(1.0f-u4^2) ]
@@ -115,9 +140,9 @@ static void photon(void)
     __m128 shells_per_mfp = _mm_set_ps1(1e4 / MICRONS_PER_SHELL / (MU_A + MU_S));
 
     /* launch */
-    __m128 x = _mm_set_ps1(0.0f);
-    __m128 y = _mm_set_ps1(0.0f);
-    __m128 z = _mm_set_ps1(0.0f);
+    x = _mm_set_ps1(0.0f);
+    y = _mm_set_ps1(0.0f);
+    z = _mm_set_ps1(0.0f);
     u = _mm_set_ps1(0.0f);
     __m128 v = _mm_set_ps1(0.0f);
     __m128 w = _mm_set_ps1(1.0f);
@@ -127,8 +152,9 @@ static void photon(void)
     __m128 two = _mm_set_ps1(2.0f);
     __m128 z1  = _mm_set_ps1(0.1f);
     __m128 zz1 = _mm_set_ps1(0.001f);
+    __m128i shell_1 = _mm_set1_epi32(SHELLS - 1);
 
-    int mask = 0;
+    int mask = 0x0000;
 
     for (;;) {
 
@@ -138,15 +164,35 @@ static void photon(void)
         x = _mm_fmadd_ps(t, u, x);
         y = _mm_fmadd_ps(t, v, y);
         z = _mm_fmadd_ps(t, w, z);
+
         /*
-        unsigned int shell = sqrtf(x * x + y * y + z * z) * shells_per_mfp; // absorb
-        if (shell > SHELLS - 1) {
-            shell = SHELLS - 1;
-        }
+            unsigned int shell = sqrtf(x * x + y * y + z * z) * shells_per_mfp; // absorb
+            if (shell > SHELLS - 1) {
+                shell = SHELLS - 1;
+            }
         */
+        intrin_sqrt1();
+        __m128i shell = _mm_set_epi32(sq1[0], sq1[1], sq1[2], sq1[3]);
+        __m128i shell_cmp = _mm_cmpgt_epi32(shell, shell_1);
+        for(int j=0; j<4; j++) {
+            if( shell_cmp[j] == 0xFFFFFFFF ) {
+                shell[j] = SHELLS - 1;
+            }
+        }
+
+        
         __m128 a_w = _mm_mul_ps(albedo, weight);
         __m128 added_heat = _mm_sub_ps(weight, a_w);
+
         //heat[shell] += added_heat;
+        int mask_ = 0x0008;
+        for(int j=0; j<4; j++) {
+            if ( mask & mask_ == 0x0000 ) {
+                heat[shell[j]] += added_heat[j];
+            }
+            mask_ = mask_ >> 1;
+        }
+        
         weight = a_w;
 
         // New direction, rejection method
@@ -155,53 +201,61 @@ static void photon(void)
         __m128 xi2;
         __m128 gtone;
         int mm = 0;
+        
         do {
             next(1);
             next(2);
+            
+            // xi1 = 2.0f * ((float)rnd[1] / fm) - 1.0f;
+            // xi2 = 2.0f * ((float)rnd[2] / fm) - 1.0f;
+            // t = xi1 * xi1 + xi2 * xi2;
             xi1 = _mm_fmsub_ps(rndf[1], two, one);
             xi2 = _mm_fmsub_ps(rndf[2], two, one);
             xi1 = _mm_mul_ps(xi1, xi1);
             xi2 = _mm_mul_ps(xi2, xi2);
-            t = _mm_add_ps(xi1, xi2);
-            gtone = _mm_cmp_ps(one, t, _CMP_GE_OQ);
+            __m128 tt = _mm_add_ps(xi1, xi2);
+            gtone = _mm_cmp_ps(tt, one, _CMP_LE_OQ);
             mm = _mm_movemask_ps(gtone) | mm;
-        } while (mm != 0x000F);
-        //} while (1.0f < t);
         
-        __m128 inv_t = _mm_div_ps(t, one);
+            for(int j=0; j<4; j++) {
+                if( tt[j] <= 1.0f ) {
+                    t[j] = tt[j];
+                }
+            }
+        } while ( mm != 0x000F );
+        //} while (1.0f < t);
+
+        // u = 2.0f * t - 1.0f;
         u = _mm_fmsub_ps(two, t, one);
         
+        // float uu = sqrtf(1.0f - u * u);
         intrin_sqrt2();
-        v = _mm_mul_ps(xi1, uu);
-        v = _mm_mul_ps(v, inv_t);
-        
+        v = _mm_mul_ps(xi1, uu); 
         w = _mm_mul_ps(xi2, uu);
-        w = _mm_mul_ps(w, inv_t);
      
-        mask = _mm_movemask_ps( _mm_cmp_ps(zz1, weight, _CMP_GT_OQ) ) | mask;
-        if ( mask != 0 ) {
+        int mask1 = _mm_movemask_ps( _mm_cmp_ps(zz1, weight, _CMP_GT_OQ) );
+        if ( mask1 != 0x0000 ) {
             next(3);
-            mask = _mm_movemask_ps( _mm_cmp_ps(rndf[3], z1, _CMP_GE_OQ) ) & mask;
+            int mask2 = _mm_movemask_ps( _mm_cmp_ps(rndf[3], z1, _CMP_GT_OQ) );
+            
+            int mask3 = 0x0008;
+            for(int j=0; j<4; j++) {
+                if( mask1 & mask3 ) {
+                    if ( mask2 & mask3 ) {
+                        mask = mask | mask3;
+                    } else {
+                        weight[j] = weight[j] * 10.0f;
+                    }
+                }
+                mask3 = mask3 >> 1;
+            }
+
             if ( mask == 0x000F )
                 break;
-            float w1, w2, w3, w4;
-            if( mask & 0x0001 == 0) {
-                weight[0] = weight[0] * 10.0f;
-            }
-            if( mask & 0x0002 == 0) {
-                weight[1] = weight[1] * 10.0f;
-            }
-            if( mask & 0x0004 == 0) {
-                weight[2] = weight[2] * 10.0f;
-            }
-            if( mask & 0x0008 == 0) {
-                weight[3] = weight[3] * 10.0f;
-            }
-            //weight = _mm_div_ps(weight, z1);
         }
         //if (unlikely( weight < 0.001f )) { // roulette
        //     next(3);
-       //     if (((float)rndf[3][0]) > 0.1f)
+       //     if (((float)rndf[3]) > 0.1f)
        //         break;
        //     weight /= 0.1f;
         
@@ -240,7 +294,7 @@ int main(void)
     // start timer
     double start = wtime();
     // simulation
-    for (unsigned int i = 0; i < PHOTONS / GENERATOR_COUNT; ++i) {
+    for (unsigned int i = 0; i < PHOTONS / 4; ++i) {
         photon();
     }
     compute_squares();
@@ -261,7 +315,7 @@ int main(void)
     printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] / PHOTONS);
     printf("# %lf seconds\n", elapsed);
 */
-    printf("%d\t%lf\n", PHOTONS, 1e-3 * PHOTONS / elapsed);
+    printf("%d\t%lf\t%lf\n", PHOTONS, elapsed, 1e-3 * PHOTONS / elapsed);
 
     return 0;
 }

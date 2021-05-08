@@ -1,5 +1,5 @@
 # Compilers
- CC = gcc-10
+CC = gcc-10
 #CC = clang-11
 
 INC = -I../ -I../../
