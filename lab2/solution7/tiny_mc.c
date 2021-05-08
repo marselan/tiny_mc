@@ -108,7 +108,7 @@ static inline void intrin_sqrt2()
 static void photon(void)
 {
     __m128 albedo = _mm_set_ps1(MU_S / (MU_S + MU_A));
-    __m128 shells_per_mfp = _mm_set_ps1(1e4 / MICRONS_PER_SHELL / (MU_A + MU_S));
+    __m128 shells_per_mfp = _mm_set_ps1(1e4 / (float)MICRONS_PER_SHELL / (MU_A + MU_S));
 
     /* launch */
     x = _mm_set_ps1(0.0f);
@@ -145,11 +145,14 @@ static void photon(void)
             }
         */
         intrin_sqrt1();
+        sq1 = _mm_mul_ps(sq1, shells_per_mfp);
         __m128i shell = _mm_set_epi32(sq1[0], sq1[1], sq1[2], sq1[3]);
         __m128i shell_cmp = _mm_cmpgt_epi32(shell, shell_1);
+        int32_t* shell_p = (int32_t*)&shell;
+        int32_t* shell_cmp_p = (int32_t*)&shell_cmp;
         for(int j=0; j<4; j++) {
-            if( shell_cmp[j] == 0xFFFFFFFF ) {
-                shell[j] = SHELLS - 1;
+            if( shell_cmp_p[j] ) {
+                shell_p[j] = SHELLS - 1;
             }
         }
 
@@ -160,8 +163,8 @@ static void photon(void)
         //heat[shell] += added_heat;
         int mask_ = 0x0008;
         for(int j=0; j<4; j++) {
-            if ( mask & mask_ == 0x0000 ) {
-                heat[shell[j]] += added_heat[j];
+            if ( (mask & mask_) == 0x0000 ) {
+                heat[shell_p[j]] += added_heat[j];
             }
             mask_ = mask_ >> 1;
         }
