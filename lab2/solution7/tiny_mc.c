@@ -108,7 +108,7 @@ static inline void intrin_sqrt2()
 static void photon(void)
 {
     __m128 albedo = _mm_set_ps1(MU_S / (MU_S + MU_A));
-    __m128 shells_per_mfp = _mm_set_ps1(1e4 / (float)MICRONS_PER_SHELL / (MU_A + MU_S));
+    __m128 shells_per_mfp = _mm_set_ps1(1e4 / MICRONS_PER_SHELL / (MU_A + MU_S));
 
     /* launch */
     x = _mm_set_ps1(0.0f);
