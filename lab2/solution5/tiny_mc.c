@@ -72,7 +72,7 @@ static void photon(void)
         float xx[8];
         xx[0] = (rndf[0][0])-1;
         for(int xxi=1; xxi<8; xxi++) xx[xxi] = xx[xxi-1] * xx[0];
-        float t = xx[0] - xx[1]/2 + xx[2]/3 - xx[3]/4 + xx[4]/5 - xx[5]/6 + xx[6]/7 - xx[7]/8;
+        float t = -(xx[0] - xx[1]/2 + xx[2]/3 - xx[3]/4 + xx[4]/5 - xx[5]/6 + xx[6]/7 - xx[7]/8);
      
         x += t * u;
         y += t * v;
