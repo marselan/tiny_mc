@@ -2,8 +2,21 @@
 rm -f results.dat
 make clean
 make
-for t in {1..20};
-do
-    ./tiny_mc >> results.dat 
-done
-cat results.dat
+
+# descomentar para solution4_flags1
+#echo results_flags1 && perf stat -e cycles,instructions,cache-references,cache-misses -r 20 ./tiny_mc >> results_flags1.dat
+ 
+# descomentar para solution4_flags2
+#echo results_flags2 && perf stat -e cycles,instructions,cache-references,cache-misses -r 20 ./tiny_mc >> results_flags2.dat
+
+# descomentar para solution4_flags3
+#echo results_flags3 && perf stat -e cycles,instructions,cache-references,cache-misses -r 20 ./tiny_mc >> results_flags3.dat
+
+# descomentar para solution4_flags4
+#echo results_flags4 && perf stat -e cycles,instructions,cache-references,cache-misses -r 20 ./tiny_mc >> results_flags4.dat
+
+# descomentar para solution4_flags5
+#echo results_flags5 && perf stat -e cycles,instructions,cache-references,cache-misses -r 20 ./tiny_mc >> results_flags5.dat
+
+# descomentar para solution4_flags6
+echo results_flags6 && perf stat -e cycles,instructions,cache-references,cache-misses -r 20 ./tiny_mc >> results_flags6.dat

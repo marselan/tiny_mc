@@ -1,0 +1,13 @@
+#!/usr/bin/gnuplot
+set terminal png size 500,500
+set output 'insn_per_cycle.png'
+set xlabel 'flags configuration'
+set ylabel 'insn per cycle'
+unset key
+set xrange []
+set yrange [0:3]
+set style fill solid
+set boxwidth 0.5
+
+plot 'averages.dat' using 3:xticlabels(1)  with boxes,\
+'averages.dat' using 0:($3+0.2):(sprintf("%3.2f",$3)) with labels notitle

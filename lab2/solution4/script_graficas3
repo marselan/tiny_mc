@@ -1,0 +1,13 @@
+#!/usr/bin/gnuplot
+set terminal png size 500,500
+set output 'cache_references.png'
+set xlabel 'flags configuration'
+set ylabel 'cache references'
+unset key
+set xrange []
+set yrange [0:900000]
+set style fill solid
+set boxwidth 0.5
+#set xtics offset -1.7,graph -0.06 rotate by 45
+plot 'averages.dat' using 4:xticlabels(1)  with boxes,\
+'averages.dat' using 0:($4+150000):(sprintf("%3.2f",$4)) with labels offset 0,graph -0.05 rotate by 90 notitle

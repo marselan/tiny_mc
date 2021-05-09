@@ -1,0 +1,12 @@
+#!/usr/bin/gnuplot
+set terminal png size 500,500
+set output 'time_elapsed.png'
+set xlabel 'flags configuration'
+set ylabel 'miliseconds time elapsed'
+unset key
+set xrange []
+set yrange [0:50]
+set style fill solid
+set boxwidth 0.5
+plot 'averages.dat' using 6:xticlabels(1)  with boxes,\
+'averages.dat' using 0:($6+2):(sprintf("%3.2f",$6)) with labels notitle

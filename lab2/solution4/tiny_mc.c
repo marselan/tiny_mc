@@ -52,13 +52,25 @@ static void photon(void)
     float v = 0.0f;
     float w = 1.0f;
     float weight = 1.0f;
-
+    
     for (;;) {
         rnd[0] = (a * rnd[0] + c) % m;
         
-        float xx = (rnd[0] / fm)-1;
-        float t = -(xx - xx*xx/2 + xx*xx*xx/3 - xx*xx*xx*xx/4 + xx*xx*xx*xx*xx/5 - xx*xx*xx*xx*xx*xx/6 + xx*xx*xx*xx*xx*xx*xx/7 - xx*xx*xx*xx*xx*xx*xx*xx/8);
-     
+        // taylor_log
+        float argument = rnd[0] / fm-1;
+        float partial_impar = 0.0f;
+        float pot;
+        for (unsigned int jota1=1; jota1<9; jota1+=2){
+            pot = jota1*1.0f;
+            partial_impar += powf(argument,pot)/jota1;
+        }
+        float partial_par = 0.0f;
+        for (unsigned int jota2=2; jota2<9; jota2+=2){
+            pot = jota2*1.0f;
+            partial_par += -powf(argument,pot)/jota2;
+        }
+        float t = -(partial_par + partial_impar);
+        
         x += t * u;
         y += t * v;
         z += t * w;
@@ -82,11 +94,12 @@ static void photon(void)
             xi2 = 2.0f * ((float)rnd[2] / fm) - 1.0f;
             t = xi1 * xi1 + xi2 * xi2;
         } while (1.0f < t);
-        float inv_t = 1 / t;
+        
         u = 2.0f * t - 1.0f;
-        float uu = sqrtf(1.0f - u * u);
-        v = xi1 * uu * inv_t;
-        w = xi2 * uu * inv_t;
+        
+        float uu = sqrtf((1.0f - u * u) / t);
+        v = xi1 * uu;
+        w = xi2 * uu;
 
         if (unlikely( weight < 0.001f )) { /* roulette */
             rnd[3] = (a * rnd[3] + c) % m;
@@ -145,7 +158,7 @@ int main(void)
     printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] / PHOTONS);
     printf("# %lf seconds\n", elapsed);
 */
-    printf("%d\t%lf\n", PHOTONS, 1e-3 * PHOTONS / elapsed);
+    printf("%d\t%lf\t%lf\n", PHOTONS, elapsed, 1e-3 * PHOTONS / elapsed);
 
     return 0;
 }

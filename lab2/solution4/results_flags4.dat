@@ -1,0 +1,39 @@
+32768	0.377855	86.721113
+32768	0.358838	91.317055
+32768	0.329244	99.525073
+32768	0.293185	111.765786
+32768	0.292191	112.145652
+32768	0.293539	111.630875
+32768	0.292467	112.039907
+32768	0.293727	111.559503
+32768	0.296600	110.478691
+32768	0.299122	109.547221
+32768	0.292467	112.039856
+32768	0.293334	111.708722
+32768	0.292298	112.104673
+32768	0.294528	111.256112
+32768	0.292177	112.151365
+32768	0.293501	111.645287
+32768	0.292133	112.168052
+32768	0.293454	111.663058
+32768	0.292532	112.015199
+32768	0.293637	111.593685
+
+2.37
+87459
+32.079
+
+
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O1 -march=native -ffast-math -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize    -c -o tiny_mc.o tiny_mc.c
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O1 -march=native -ffast-math -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize    -c -o wtime.o wtime.c
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O1 -march=native -ffast-math -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize  -o tiny_mc tiny_mc.o wtime.o -lm
+results_flags4
+
+ Performance counter stats for './tiny_mc' (20 runs):
+
+       964.219.858      cycles                                                        ( +-  0,11% )
+     2.287.797.584      instructions              #    2,37  insn per cycle           ( +-  0,01% )
+            87.459      cache-references                                              ( +-  7,10% )
+            28.056      cache-misses              #   32,079 % of all cache refs      ( +- 16,62% )
+
+           0,30353 +- 0,00543 seconds time elapsed  ( +-  1,79% )

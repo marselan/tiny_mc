@@ -1,0 +1,47 @@
+32768	0.060108	545.148133
+32768	0.039404	831.587726
+32768	0.039406	831.539928
+32768	0.039397	831.730118
+32768	0.039390	831.876614
+32768	0.039402	831.638315
+32768	0.039388	831.932097
+32768	0.039393	831.822153
+32768	0.039387	831.942489
+32768	0.039625	826.944041
+32768	0.039418	831.291214
+32768	0.039399	831.698980
+32768	0.039384	832.022465
+32768	0.039452	830.570237
+32768	0.039921	820.816680
+32768	0.039955	820.123808
+32768	0.039863	822.005814
+32768	0.040537	808.347052
+32768	0.040720	804.721195
+32768	0.039572	828.061270
+
+1.60
+78884
+30.597
+
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -march=native -ffast-math -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize    -c -o tiny_mc.o tiny_mc.c
+tiny_mc.c:91:25: remark: loop not vectorized: value that could not be identified as reduction is used outside the loop [-Rpass-analysis=loop-vectorize]
+            rnd[1] = (a * rnd[1] + c) % m;
+                        ^
+tiny_mc.c:90:9: remark: loop not vectorized: could not determine number of loop iterations [-Rpass-analysis=loop-vectorize]
+        do {
+        ^
+tiny_mc.c:114:5: remark: the cost-model indicates that interleaving is not beneficial [-Rpass-analysis=loop-vectorize]
+    for(int i=0; i<SHELLS; i++) {
+    ^
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -march=native -ffast-math -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize    -c -o wtime.o wtime.c
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -march=native -ffast-math -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize  -o tiny_mc tiny_mc.o wtime.o -lm
+results_flags5
+
+ Performance counter stats for './tiny_mc' (20 runs):
+
+       107.790.714      cycles                                                        ( +-  0,16% )
+       172.348.015      instructions              #    1,60  insn per cycle           ( +-  0,01% )
+            78.884      cache-references                                              ( +-  3,94% )
+            24.136      cache-misses              #   30,597 % of all cache refs      ( +- 20,83% )
+
+           0,04146 +- 0,00110 seconds time elapsed  ( +-  2,65% )

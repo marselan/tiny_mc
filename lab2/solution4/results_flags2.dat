@@ -1,0 +1,57 @@
+32768	0.070069	467.652979
+32768	0.043572	752.044322
+32768	0.043560	752.254243
+32768	0.043554	752.349704
+32768	0.043578	751.943987
+32768	0.043551	752.411618
+32768	0.043555	752.338943
+32768	0.043542	752.553193
+32768	0.043568	752.105910
+32768	0.043501	753.273243
+32768	0.043468	753.841855
+32768	0.043638	750.907205
+32768	0.043640	750.877919
+32768	0.043578	751.945781
+32768	0.043574	752.000519
+32768	0.043582	751.866174
+32768	0.043520	752.933287
+32768	0.041947	781.173248
+32768	0.041563	788.395060
+32768	0.040533	808.418706
+
+1.45
+63636
+23.033
+
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -march=native -ffast-math -mavx2 -ftree-vectorize -fopt-info-vec -fopt-info-vec-missed   -c -o tiny_mc.o tiny_mc.c
+tiny_mc.c:114:5: optimized: loop vectorized using 32 byte vectors
+tiny_mc.c:114:5: optimized: loop vectorized using 16 byte vectors
+tiny_mc.c:140:5: missed: couldn't vectorize loop
+tiny_mc.c:140:5: missed: not vectorized: multiple nested loops.
+tiny_mc.c:106:16: missed: couldn't vectorize loop
+tiny_mc.c:106:16: missed: not vectorized: control flow in loop.
+tiny_mc.c:96:9: missed: couldn't vectorize loop
+tiny_mc.c:96:9: missed: not vectorized: number of iterations cannot be computed.
+tiny_mc.c:134:5: missed: couldn't vectorize loop
+tiny_mc.c:135:18: missed: statement clobbers memory: _3 = rand ();
+tiny_mc.c:133:11: missed: statement clobbers memory: _1 = time (0B);
+tiny_mc.c:133:5: missed: statement clobbers memory: srand (_2);
+tiny_mc.c:135:18: missed: statement clobbers memory: _3 = rand ();
+tiny_mc.c:138:20: missed: statement clobbers memory: start_14 = wtime ();
+tiny_mc.c:145:18: missed: statement clobbers memory: end_16 = wtime ();
+tiny_mc.c:145:18: optimized: basic block part vectorized using 16 byte vectors
+tiny_mc.c:146:5: missed: statement clobbers memory: __assert_fail ("start <= end", "tiny_mc.c", 146, &__PRETTY_FUNCTION__);
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed: statement clobbers memory: __printf_chk (1, "%d\t%lf\t%lf\n", 32768, elapsed_17, _5);
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -march=native -ffast-math -mavx2 -ftree-vectorize -fopt-info-vec -fopt-info-vec-missed   -c -o wtime.o wtime.c
+wtime.c:12:9: missed: statement clobbers memory: clock_gettime (4, &ts);
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -march=native -ffast-math -mavx2 -ftree-vectorize -fopt-info-vec -fopt-info-vec-missed -o tiny_mc tiny_mc.o wtime.o -lm
+results_flags2
+
+ Performance counter stats for './tiny_mc' (20 runs):
+
+       118.355.138      cycles                                                        ( +-  0,05% )
+       171.983.241      instructions              #    1,45  insn per cycle           ( +-  0,02% )
+            63.636      cache-references                                              ( +-  1,22% )
+            14.657      cache-misses              #   23,033 % of all cache refs      ( +- 21,55% )
+
+           0,04526 +- 0,00142 seconds time elapsed  ( +-  3,14% )
