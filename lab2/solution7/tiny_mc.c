@@ -132,7 +132,7 @@ static void photon(void)
         // taylor
         //random_log();
         next(0);
-        t = _mm_set_ps(-logf(rndf[0][0]), -logf(rndf[0][1]), -logf(rndf[0][2]), -logf(rndf[0][3]));
+        t = _mm_log_ps(rndf[0]);
 
         x = _mm_fmadd_ps(t, u, x);
         y = _mm_fmadd_ps(t, v, y);
