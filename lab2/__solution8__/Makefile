@@ -4,10 +4,15 @@
 CC=icc
 
 INC = -I../ -I../../ -I/usr/include/x86_64-linux-gnu
-# Flags
-#CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -march=native -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize 
+# Flags GCC
 #CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -march=native -mavx2 -ftree-vectorize -fopt-info-vec -fopt-info-vec-missed
+
+# Flags CLANG
+#CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -march=native -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize 
+
+# Flags ICC
 CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -mavx2 -qopt-report=1 -qopt-report-phase=vec
+
 LDFLAGS = -lm
 
 # Binary file

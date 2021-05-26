@@ -126,15 +126,16 @@ static void photon(void)
     __m128 ten = _mm_set_ps1(10.0f);
     __m128 z1  = _mm_set_ps1(0.1f);
     __m128 zz1 = _mm_set_ps1(0.001f);
-    __m128i shell_1 = _mm_set1_epi32(SHELLS - 1);
+    __m128 shell_ = _mm_set1_ps((float)SHELLS);
+    __m128 shell_1 = _mm_set1_ps((float)(SHELLS - 1));
     __m128 all_true = _mm_cmp_ps(zero, one, _CMP_LT_OQ);
 
     #if __INTEL_COMPILER
     __m128 _one = _mm_set_ps1(-1.0f);
     #endif
 
-    int mask = 0x0000;
     __m128 process_mask = all_true;
+    int bit_mask = 0xFFFF;
 
     for (;;) {
 
@@ -158,31 +159,26 @@ static void photon(void)
         //    }
         
         intrin_sqrt1();
-        sq1 = _mm_mul_ps(sq1, shells_per_mfp);
-        __m128i shell = _mm_set_epi32(sq1[0], sq1[1], sq1[2], sq1[3]);
-        __m128i shell_cmp = _mm_cmpgt_epi32(shell, shell_1);
-        int32_t* shell_p = (int32_t*)&shell;
-        int32_t* shell_cmp_p = (int32_t*)&shell_cmp;
-        for(int j=0; j<4; j++) {
-            if( shell_cmp_p[j] ) {
-                shell_p[j] = SHELLS - 1;
-            }
-        }
+        __m128 shell = _mm_mul_ps(sq1, shells_per_mfp);
+        __m128 shell_cmp = _mm_cmp_ps(shell, shell_, _CMP_GE_OQ);
+        shell = _mm_blendv_ps(shell, shell_1, shell_cmp);
+        __m128i shell_i = _mm_cvtps_epi32(shell);
+        uint32_t * shell_index = (uint32_t*)&shell_i;
 
         
         __m128 a_w = _mm_mul_ps(albedo, weight);
         __m128 added_heat = _mm_sub_ps(weight, a_w);
 
         //heat[shell] += added_heat;
-        /*
-        int mask_ = 0x0008;
+        
+        int mask = 0x0001;
         for(int j=0; j<4; j++) {
-            if ( (mask & mask_) == 0x0000 ) {
-                heat[shell_p[j]] += added_heat[j];
+            if ( (bit_mask & mask) == mask ) {
+                heat[shell_index[j]] += added_heat[j];
             }
-            mask_ = mask_ >> 1;
+            mask = mask << 1;
         }
-        */
+        
         weight = a_w;
 
         // New direction, rejection method
@@ -235,8 +231,9 @@ static void photon(void)
 
         __m128 F = _mm_or_ps( _mm_and_ps(_e, _r), _mm_and_ps(_e, r) );
         F = _mm_or_ps(F, _mm_and_ps(e, _r));
-        process_mask = _mm_and_ps(process_mask, F);  
-        if ( _mm_movemask_ps(process_mask) == 0x0000 ) break;
+        process_mask = _mm_and_ps(process_mask, F);
+        bit_mask = _mm_movemask_ps(process_mask);  
+        if ( bit_mask == 0x0000 ) break;
             
 /*
         
