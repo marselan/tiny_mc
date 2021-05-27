@@ -132,7 +132,6 @@ static void photon(void)
     __m256 ten = _mm256_set1_ps(10.0f);
     __m256 z1  = _mm256_set1_ps(0.1f);
     __m256 zz1 = _mm256_set1_ps(0.001f);
-    __m256 shell_ = _mm256_set1_ps((float)SHELLS);
     __m256 shell_1 = _mm256_set1_ps((float)(SHELLS - 1));
     __m256 all_true = _mm256_cmp_ps(zero, one, _CMP_LT_OQ);
 
@@ -166,7 +165,7 @@ static void photon(void)
         
         intrin_sqrt1();
         __m256 shell = _mm256_mul_ps(sq1, shells_per_mfp);
-        __m256 shell_cmp = _mm256_cmp_ps(shell, shell_, _CMP_GE_OQ);
+        __m256 shell_cmp = _mm256_cmp_ps(shell, shell_1, _CMP_GT_OQ);
         shell = _mm256_blendv_ps(shell, shell_1, shell_cmp);
         __m256i shell_i = _mm256_cvtps_epi32(shell);
         uint32_t * shell_index = (uint32_t*)&shell_i;
