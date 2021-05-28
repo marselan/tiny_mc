@@ -6,7 +6,7 @@ make clean
 # +++ Corremos el programa
 make
 # +++ Especifico la cantidad de hilos
-num_threads=4
+num_threads=28
 
 # +++ Imprimo mensaje
 echo #
@@ -15,4 +15,4 @@ echo #
 # +++ Ejecuto análisis de performance en x corridas y guardo los datos
 perf stat -e cpu-clock,cpu-cycles,instructions,cache-references,cache-misses -r 20 ./tiny_mc >> results.dat
 # +++ Muestro los datos en salida estandar por terminal
-cat results.dat
+#cat results.dat

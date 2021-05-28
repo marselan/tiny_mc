@@ -172,7 +172,7 @@ int main(void)
     //#pragma omp parallel num_threads(4) shared(heat)
     //#pragma omp parallel num_threads(4) // start parallel execution
     
-    #pragma omp parallel num_threads(4) shared(heat,a,c,m,fm)
+    #pragma omp parallel num_threads(28) shared(heat,a,c,m,fm)
     {
         // Constructores
         // opcion 1 -> single
