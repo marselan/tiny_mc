@@ -1,0 +1,18 @@
+rm -f tiny_mc *.o
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -Wopenmp-simd -O3 -fopenmp -ffast-math -march=native -mavx2 -ftree-vectorize   -c -o tiny_mc.o tiny_mc.c
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -Wopenmp-simd -O3 -fopenmp -ffast-math -march=native -mavx2 -ftree-vectorize   -c -o wtime.o wtime.c
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -Wopenmp-simd -O3 -fopenmp -ffast-math -march=native -mavx2 -ftree-vectorize -o tiny_mc tiny_mc.o wtime.o -lm
+
+++++++++++++++++++ FOR 28 THREADS ++++++++++++++++++
+
+
+ Performance counter stats for './tiny_mc' (20 runs):
+
+          27793.42 msec cpu-clock                 #   14.547 CPUs utilized            ( +-  1.21% )
+       80265156050      cpu-cycles                #    2.888 GHz                      ( +-  1.18% )
+       17460249484      instructions              #    0.22  insn per cycle           ( +-  0.02% )
+         403354195      cache-references          #   14.513 M/sec                    ( +-  0.80% )
+         112158763      cache-misses              #   27.807 % of all cache refs      ( +-  4.08% )
+
+            1.9106 +- 0.0289 seconds time elapsed  ( +-  1.51% )
+
