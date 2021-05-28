@@ -1,0 +1,75 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+Begin optimization report for: main(void)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at tiny_mc.c(306,9)
+
+   LOOP BEGIN at tiny_mc.c(307,13)
+   LOOP END
+
+   LOOP BEGIN at tiny_mc.c(307,13)
+   LOOP END
+
+   LOOP BEGIN at tiny_mc.c(307,13)
+   LOOP END
+
+   LOOP BEGIN at tiny_mc.c(307,13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(314,9)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(314,9)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(314,9)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(267,5) inlined into tiny_mc.c(318,9)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(267,5) inlined into tiny_mc.c(318,9)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(267,5) inlined into tiny_mc.c(318,9)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(314,9)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(314,9)
+<Remainder>
+LOOP END
+===========================================================================
+
+Begin optimization report for: photon(__m256i *, __m256i *, __m256 *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at tiny_mc.c(65,32) inlined into tiny_mc.c(158,9)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at tiny_mc.c(205,13)
+      remark #25460: No loop optimizations reported
+   LOOP END
+
+   LOOP BEGIN at tiny_mc.c(189,9)
+   LOOP END
+LOOP END
+===========================================================================

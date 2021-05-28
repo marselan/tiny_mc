@@ -1,0 +1,5318 @@
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+Function:        _mm256_set1_epi32
+Args:
+  - Callee:          _mm256_set_epi32
+  - String:          ' inlined into '
+  - Caller:          _mm256_set1_epi32
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+Function:        _mm256_set1_epi64x
+Args:
+  - Callee:          _mm256_set_epi64x
+  - String:          ' inlined into '
+  - Caller:          _mm256_set1_epi64x
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+Function:        _mm_set1_epi64x
+Args:
+  - Callee:          _mm_set_epi64x
+  - String:          ' inlined into '
+  - Caller:          _mm_set1_epi64x
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 9 }
+Function:        compute_squares
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+Function:        compute_squares
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+Function:        compute_squares
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 9 }
+Function:        compute_squares
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+Function:        compute_squares
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+Function:        _mm256_set1_ps
+Args:
+  - Callee:          _mm256_set_ps
+  - String:          ' inlined into '
+  - Caller:          _mm256_set1_ps
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        next
+Args:
+  - Callee:          _mm256_mul_epi32
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '2'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        next
+Args:
+  - Callee:          _mm256_set_ps
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '15'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 61, Column: 15 }
+Function:        next
+Args:
+  - Callee:          _mm256_xor_si256
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '12'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 60, Column: 10 }
+Function:        next
+Args:
+  - Callee:          _mm256_sll_epi64
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '11'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 59, Column: 10 }
+Function:        next
+Args:
+  - Callee:          _mm256_srl_epi64
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '10'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 58, Column: 15 }
+Function:        next
+Args:
+  - Callee:          _mm256_add_epi64
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '9'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 57, Column: 15 }
+Function:        next
+Args:
+  - Callee:          _mm256_mul_epi32
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '8'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 55, Column: 15 }
+Function:        next
+Args:
+  - Callee:          _mm256_xor_si256
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '6'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 54, Column: 18 }
+Function:        next
+Args:
+  - Callee:          _mm256_sll_epi64
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '5'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 53, Column: 18 }
+Function:        next
+Args:
+  - Callee:          _mm256_srl_epi64
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '4'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 52, Column: 15 }
+Function:        next
+Args:
+  - Callee:          _mm256_add_epi64
+  - String:          ' inlined into '
+  - Caller:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          next
+  - String:          ':'
+  - Line:            '3'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 72, Column: 21 }
+Function:        intrin_sqrt1
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt1
+    DebugLoc:        { File: tiny_mc.c, Line: 69, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt1
+  - String:          ':'
+  - Line:            '4'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 83, Column: 11 }
+Function:        intrin_sqrt1
+Args:
+  - Callee:          _mm256_sqrt_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt1
+    DebugLoc:        { File: tiny_mc.c, Line: 69, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt1
+  - String:          ':'
+  - Line:            '15'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 79, Column: 24 }
+Function:        intrin_sqrt1
+Args:
+  - Callee:          _mm256_add_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt1
+    DebugLoc:        { File: tiny_mc.c, Line: 69, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt1
+  - String:          ':'
+  - Line:            '11'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 78, Column: 24 }
+Function:        intrin_sqrt1
+Args:
+  - Callee:          _mm256_add_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt1
+    DebugLoc:        { File: tiny_mc.c, Line: 69, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt1
+  - String:          ':'
+  - Line:            '10'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 74, Column: 21 }
+Function:        intrin_sqrt1
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt1
+    DebugLoc:        { File: tiny_mc.c, Line: 69, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt1
+  - String:          ':'
+  - Line:            '6'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 73, Column: 21 }
+Function:        intrin_sqrt1
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt1
+    DebugLoc:        { File: tiny_mc.c, Line: 69, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt1
+  - String:          ':'
+  - Line:            '5'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 91, Column: 21 }
+Function:        intrin_sqrt2
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt2
+    DebugLoc:        { File: tiny_mc.c, Line: 88, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt2
+  - String:          ':'
+  - Line:            '4'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 104, Column: 10 }
+Function:        intrin_sqrt2
+Args:
+  - Callee:          _mm256_sqrt_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt2
+    DebugLoc:        { File: tiny_mc.c, Line: 88, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt2
+  - String:          ':'
+  - Line:            '17'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 101, Column: 15 }
+Function:        intrin_sqrt2
+Args:
+  - Callee:          _mm256_div_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt2
+    DebugLoc:        { File: tiny_mc.c, Line: 88, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt2
+  - String:          ':'
+  - Line:            '14'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 99, Column: 22 }
+Function:        intrin_sqrt2
+Args:
+  - Callee:          _mm256_sub_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt2
+    DebugLoc:        { File: tiny_mc.c, Line: 88, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt2
+  - String:          ':'
+  - Line:            '12'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 95, Column: 21 }
+Function:        intrin_sqrt2
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          intrin_sqrt2
+    DebugLoc:        { File: tiny_mc.c, Line: 88, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          intrin_sqrt2
+  - String:          ':'
+  - Line:            '8'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 117, Column: 21 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '3'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 241, Column: 20 }
+Function:        photon
+Args:
+  - Callee:          _mm256_movemask_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '127'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 240, Column: 24 }
+Function:        photon
+Args:
+  - Callee:          _mm256_and_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '126'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 239, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          _mm256_or_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '125'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 239, Column: 29 }
+Function:        photon
+Args:
+  - Callee:          _mm256_and_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '125'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 238, Column: 20 }
+Function:        photon
+Args:
+  - Callee:          _mm256_or_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '124'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 238, Column: 57 }
+Function:        photon
+Args:
+  - Callee:          _mm256_and_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '124'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 238, Column: 34 }
+Function:        photon
+Args:
+  - Callee:          _mm256_and_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '124'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 236, Column: 18 }
+Function:        photon
+Args:
+  - Callee:          _mm256_blendv_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '122'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 236, Column: 43 }
+Function:        photon
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '122'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+Function:        photon
+Args:
+  - Callee:          _mm256_and_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '121'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 234, Column: 22 }
+Function:        photon
+Args:
+  - Callee:          _mm256_and_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '120'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: tiny_mc.c, Line: 231, Column: 9 }
+Function:        photon
+Args:
+  - Callee:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '240'
+  - String:          ', threshold='
+  - Threshold:       '974'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '117'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 224, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '110'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 223, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '109'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: tiny_mc.c, Line: 222, Column: 9 }
+Function:        photon
+Args:
+  - Callee:          intrin_sqrt2
+    DebugLoc:        { File: tiny_mc.c, Line: 88, Column: 0 }
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '-14995'
+  - String:          ', threshold='
+  - Threshold:       '974'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '108'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 219, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          _mm256_fmsub_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '105'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 213, Column: 17 }
+Function:        photon
+Args:
+  - Callee:          _mm256_blendv_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '99'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 212, Column: 18 }
+Function:        photon
+Args:
+  - Callee:          _mm256_movemask_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '98'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 210, Column: 18 }
+Function:        photon
+Args:
+  - Callee:          _mm256_add_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '96'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 209, Column: 19 }
+Function:        photon
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '95'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 208, Column: 19 }
+Function:        photon
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '94'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 207, Column: 19 }
+Function:        photon
+Args:
+  - Callee:          _mm256_fmsub_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '93'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 206, Column: 19 }
+Function:        photon
+Args:
+  - Callee:          _mm256_fmsub_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '92'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: tiny_mc.c, Line: 201, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '240'
+  - String:          ', threshold='
+  - Threshold:       '974'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '87'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: tiny_mc.c, Line: 200, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '240'
+  - String:          ', threshold='
+  - Threshold:       '974'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '86'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 176, Column: 29 }
+Function:        photon
+Args:
+  - Callee:          _mm256_sub_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '62'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 175, Column: 22 }
+Function:        photon
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '61'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 27 }
+Function:        photon
+Args:
+  - Callee:          _mm256_cvtps_epi32
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '57'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 170, Column: 17 }
+Function:        photon
+Args:
+  - Callee:          _mm256_blendv_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '56'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 168, Column: 24 }
+Function:        photon
+Args:
+  - Callee:          _mm256_mul_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '54'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: tiny_mc.c, Line: 167, Column: 9 }
+Function:        photon
+Args:
+  - Callee:          intrin_sqrt1
+    DebugLoc:        { File: tiny_mc.c, Line: 69, Column: 0 }
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '-14980'
+  - String:          ', threshold='
+  - Threshold:       '974'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '53'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 160, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          _mm256_fmadd_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '46'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 159, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          _mm256_fmadd_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '45'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 158, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          _mm256_fmadd_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '44'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '41'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: tiny_mc.c, Line: 150, Column: 9 }
+Function:        photon
+Args:
+  - Callee:          next
+    DebugLoc:        { File: tiny_mc.c, Line: 50, Column: 0 }
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '-14760'
+  - String:          ', threshold='
+  - Threshold:       '974'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '36'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 136, Column: 22 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '22'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 135, Column: 21 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '21'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 134, Column: 18 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '20'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 133, Column: 18 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '19'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 132, Column: 18 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '18'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 131, Column: 18 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '17'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 130, Column: 18 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '16'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 127, Column: 21 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '13'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 126, Column: 16 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '12'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 125, Column: 16 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '11'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 124, Column: 9 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '10'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 123, Column: 9 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '9'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 122, Column: 9 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '8'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 121, Column: 9 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '7'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 118, Column: 29 }
+Function:        photon
+Args:
+  - Callee:          _mm256_set1_ps
+  - String:          ' inlined into '
+  - Caller:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          photon
+  - String:          ':'
+  - Line:            '4'
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 57, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 57, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 213, Column: 34 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 55, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 61, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 55, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 61, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 213, Column: 15 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 172, Column: 34 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 172, Column: 34 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 9 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 41 }
+Function:        photon
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        photon
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        photon
+Args:
+  - String:          'hoisting '
+  - Inst:            ashr
+    DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 52, Column: 41 }
+Function:        photon
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: tiny_mc.c, Line: 52, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 53, Column: 44 }
+Function:        photon
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: tiny_mc.c, Line: 53, Column: 44 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 57, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 158, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 158, Column: 35 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 159, Column: 35 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 160, Column: 35 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 9 }
+Function:        photon
+Args:
+  - String:          'hoisting '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 17 }
+Function:        photon
+Args:
+  - String:          'hoisting '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 171, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 172, Column: 34 }
+Function:        photon
+Args:
+  - String:          'hoisting '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 172, Column: 34 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+DebugLoc:        { File: tiny_mc.c, Line: 57, Column: 32 }
+Function:        photon
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 55, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 61, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 219, Column: 11 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 158, Column: 11 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 159, Column: 11 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 160, Column: 11 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 83, Column: 9 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 104, Column: 8 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 55, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 61, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        photon
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            loop-unroll
+Name:            FullyUnrolled
+DebugLoc:        { File: tiny_mc.c, Line: 181, Column: 9 }
+Function:        photon
+Args:
+  - String:          'completely unrolled loop with '
+  - UnrollCount:     '8'
+  - String:          ' iterations'
+...
+--- !Passed
+Pass:            gvn
+Name:            LoadElim
+Function:        photon
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' eliminated'
+  - String:          ' in favor of '
+  - InfavorOfValue:  ''
+...
+--- !Passed
+Pass:            gvn
+Name:            LoadElim
+Function:        photon
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' eliminated'
+  - String:          ' in favor of '
+  - InfavorOfValue:  ''
+...
+--- !Passed
+Pass:            gvn
+Name:            LoadElim
+Function:        photon
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' eliminated'
+  - String:          ' in favor of '
+  - InfavorOfValue:  ''
+...
+--- !Passed
+Pass:            gvn
+Name:            LoadElim
+Function:        photon
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' eliminated'
+  - String:          ' in favor of '
+  - InfavorOfValue:  ''
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            trunc
+    DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 41 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            extractelement
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+Function:        photon
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 278, Column: 11 }
+Function:        main
+Args:
+  - Callee:          time
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 278, Column: 5 }
+Function:        main
+Args:
+  - Callee:          srand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+Function:        main
+Args:
+  - Callee:          wtime
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 295, Column: 18 }
+Function:        main
+Args:
+  - Callee:          wtime
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 296, Column: 5 }
+Function:        main
+Args:
+  - Callee:          __assert_fail
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 311, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 279, Column: 9 }
+Function:        main
+Args:
+  - Callee:          _mm256_set1_epi32
+  - String:          ' inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '10'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: tiny_mc.c, Line: 291, Column: 9 }
+Function:        main
+Args:
+  - Callee:          photon
+    DebugLoc:        { File: tiny_mc.c, Line: 115, Column: 0 }
+  - String:          ' inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '-13250'
+  - String:          ', threshold='
+  - Threshold:       '625'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '22'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: tiny_mc.c, Line: 293, Column: 5 }
+Function:        main
+Args:
+  - Callee:          compute_squares
+    DebugLoc:        { File: tiny_mc.c, Line: 258, Column: 0 }
+  - String:          ' inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '-14990'
+  - String:          ', threshold='
+  - Threshold:       '250'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '24'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 19 }
+Function:        main
+Args:
+  - Callee:          _mm256_set_epi32
+  - String:          ' inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '16'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 19 }
+Function:        main
+Args:
+  - Callee:          _mm256_set_epi32
+  - String:          ' inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '15'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 281, Column: 9 }
+Function:        main
+Args:
+  - Callee:          _mm_set1_epi64x
+  - String:          ' inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '12'
+...
+--- !Passed
+Pass:            inline
+Name:            AlwaysInline
+DebugLoc:        { File: tiny_mc.c, Line: 280, Column: 9 }
+Function:        main
+Args:
+  - Callee:          _mm256_set1_epi64x
+  - String:          ' inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' with '
+  - String:          '(cost=always)'
+  - String:          ': '
+  - Reason:          always inline attribute
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '11'
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 9 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            trunc
+    DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 41 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            extractelement
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 41 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            shl
+    DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            ashr
+    DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 52, Column: 41 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: tiny_mc.c, Line: 52, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: tiny_mc.c, Line: 53, Column: 44 }
+Function:        main
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: tiny_mc.c, Line: 53, Column: 44 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        main
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        main
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        main
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        main
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        main
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        main
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        main
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        main
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 0, Column: 0 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 83, Column: 9 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 104, Column: 8 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            PromoteLoopAccessesToScalar
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 13 }
+Function:        main
+Args:
+  - String:          Moving accesses to memory location out of the loop
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 9 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 9 }
+...
+--- !Passed
+Pass:            loop-unroll
+Name:            FullyUnrolled
+DebugLoc:        { File: tiny_mc.c, Line: 283, Column: 5 }
+Function:        main
+Args:
+  - String:          'completely unrolled loop with '
+  - UnrollCount:     '4'
+  - String:          ' iterations'
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 41 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: tiny_mc.c, Line: 279, Column: 7 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: tiny_mc.c, Line: 52, Column: 41 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: tiny_mc.c, Line: 280, Column: 7 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: tiny_mc.c, Line: 53, Column: 44 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: tiny_mc.c, Line: 281, Column: 7 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 41 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: tiny_mc.c, Line: 279, Column: 7 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: tiny_mc.c, Line: 52, Column: 41 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: tiny_mc.c, Line: 280, Column: 7 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: tiny_mc.c, Line: 53, Column: 44 }
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     store
+    DebugLoc:        { File: tiny_mc.c, Line: 281, Column: 7 }
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        main
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 9 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 9 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 260, Column: 21 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            trunc
+    DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 41 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            extractelement
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 41 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            insertelement
+    DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 13 }
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 278, Column: 11 }
+Function:        main
+Args:
+  - Callee:          time
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 278, Column: 5 }
+Function:        main
+Args:
+  - Callee:          srand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 284, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 39 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 55 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 71 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 285, Column: 87 }
+Function:        main
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 288, Column: 20 }
+Function:        main
+Args:
+  - Callee:          wtime
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 295, Column: 18 }
+Function:        main
+Args:
+  - Callee:          wtime
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 296, Column: 5 }
+Function:        main
+Args:
+  - Callee:          __assert_fail
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: tiny_mc.c, Line: 311, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Analysis
+Pass:            loop-vectorize
+Name:            CFGNotUnderstood
+DebugLoc:        { File: tiny_mc.c, Line: 199, Column: 9 }
+Function:        main
+Args:
+  - String:          'loop not vectorized: '
+  - String:          loop control flow is not understood by vectorizer
+...
+--- !Analysis
+Pass:            loop-vectorize
+Name:            CantComputeNumberOfIterations
+DebugLoc:        { File: tiny_mc.c, Line: 199, Column: 9 }
+Function:        main
+Args:
+  - String:          'loop not vectorized: '
+  - String:          could not determine number of loop iterations
+...
+--- !Missed
+Pass:            loop-vectorize
+Name:            MissedDetails
+DebugLoc:        { File: tiny_mc.c, Line: 199, Column: 9 }
+Function:        main
+Args:
+  - String:          loop not vectorized
+...
+--- !Analysis
+Pass:            loop-vectorize
+Name:            InterleavingNotBeneficial
+DebugLoc:        { File: tiny_mc.c, Line: 259, Column: 5 }
+Function:        main
+Args:
+  - String:          the cost-model indicates that interleaving is not beneficial
+...
+--- !Passed
+Pass:            loop-vectorize
+Name:            Vectorized
+DebugLoc:        { File: tiny_mc.c, Line: 259, Column: 5 }
+Function:        main
+Args:
+  - String:          'vectorized loop (vectorization width: '
+  - VectorizationFactor: '8'
+  - String:          ', interleaved count: '
+  - InterleaveCount: '1'
+  - String:          ')'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 208 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-3'
+  - String:          ' and with tree size '
+  - TreeSize:        '4'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 116 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-11'
+  - String:          ' and with tree size '
+  - TreeSize:        '4'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 234, Column: 22 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 238, Column: 20 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 233, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 234, Column: 22 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 238, Column: 20 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 233, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 234, Column: 22 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 238, Column: 20 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 233, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 208 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-3'
+  - String:          ' and with tree size '
+  - TreeSize:        '4'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 116 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-11'
+  - String:          ' and with tree size '
+  - TreeSize:        '4'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 209, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 206, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 207, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 209, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 206, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 207, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 209, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 206, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 207, Column: 19 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 208 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-3'
+  - String:          ' and with tree size '
+  - TreeSize:        '4'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 116 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-11'
+  - String:          ' and with tree size '
+  - TreeSize:        '4'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 208 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-3'
+  - String:          ' and with tree size '
+  - TreeSize:        '4'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 64, Column: 116 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-11'
+  - String:          ' and with tree size '
+  - TreeSize:        '4'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 234, Column: 22 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 238, Column: 20 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 233, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 234, Column: 22 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 238, Column: 20 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 233, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 233, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 219, Column: 13 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 219, Column: 13 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 78, Column: 24 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 73, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 72, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 160, Column: 13 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 73, Column: 21 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 158, Column: 13 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+DebugLoc:        { File: tiny_mc.c, Line: 159, Column: 13 }
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Passed
+Pass:            slp-vectorizer
+Name:            VectorizedList
+DebugLoc:        { File: tiny_mc.c, Line: 155, Column: 160 }
+Function:        main
+Args:
+  - String:          'SLP vectorized with cost '
+  - Cost:            '-233'
+  - String:          ' and with tree size '
+  - TreeSize:        '3'
+...
+--- !Missed
+Pass:            slp-vectorizer
+Name:            UnsupportedType
+Function:        main
+Args:
+  - String:          'Cannot SLP vectorize list: type '
+  - String:          ' is unsupported by vectorizer'
+...
+--- !Passed
+Pass:            loop-unroll
+Name:            FullyUnrolled
+DebugLoc:        { File: tiny_mc.c, Line: 259, Column: 5 }
+Function:        main
+Args:
+  - String:          'completely unrolled loop with '
+  - UnrollCount:     '5'
+  - String:          ' iterations'
+...
+--- !Passed
+Pass:            loop-unroll
+Name:            FullyUnrolled
+DebugLoc:        { File: tiny_mc.c, Line: 259, Column: 5 }
+Function:        main
+Args:
+  - String:          'completely unrolled loop with '
+  - UnrollCount:     '12'
+  - String:          ' iterations'
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            bitcast
+    DebugLoc:        { File: tiny_mc.c, Line: 235, Column: 15 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            trunc
+    DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            getelementptr
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 41 }
+Function:        main
+Args:
+  - String:          'sinking '
+  - Inst:            extractelement
+    DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 41 }
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReload
+DebugLoc:        { File: tiny_mc.c, Line: 199, Column: 9 }
+Function:        main
+Args:
+  - NumReloads:      '4'
+  - String:          ' reloads '
+  - NumFoldedReloads: '1'
+  - String:          ' folded reloads '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReload
+DebugLoc:        { File: tiny_mc.c, Line: 147, Column: 5 }
+Function:        main
+Args:
+  - NumSpills:       '18'
+  - String:          ' spills '
+  - NumReloads:      '31'
+  - String:          ' reloads '
+  - NumFoldedReloads: '17'
+  - String:          ' folded reloads '
+  - String:          generated in loop
+...
+--- !Missed
+Pass:            regalloc
+Name:            LoopSpillReload
+DebugLoc:        { File: tiny_mc.c, Line: 290, Column: 5 }
+Function:        main
+Args:
+  - NumSpills:       '25'
+  - String:          ' spills '
+  - NumReloads:      '33'
+  - String:          ' reloads '
+  - NumFoldedReloads: '17'
+  - String:          ' folded reloads '
+  - String:          generated in loop
+...
+--- !Analysis
+Pass:            prologepilog
+Name:            StackSize
+DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+Function:        main
+Args:
+  - NumStackBytes:   '1144'
+  - String:          ' stack bytes in function'
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '231'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '14'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '88'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 182, Column: 36 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '2'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '3'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 51, Column: 15 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '125'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '115'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '6'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '8'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '9'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 183, Column: 22 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '7'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '83'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 297, Column: 26 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '14'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: tiny_mc.c, Line: 296, Column: 5 }
+Function:        main
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ''
+  - String:          ': '
+  - INST_:           '5'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionCount
+DebugLoc:        { File: tiny_mc.c, Line: 270, Column: 0 }
+Function:        main
+Args:
+  - NumInstructions: '755'
+  - String:          ' instructions in function'
+...
