@@ -17,7 +17,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <immintrin.h>
 
 #include <omp.h> // libreria OpenMP
 
@@ -32,12 +31,11 @@ static float heat[SHELLS];
 static float heat2[SHELLS];
 
 // random generator parameters
-__m256i a;
-__m256i c;
-__m128i s;
+static const uint64_t a = 1103515245;
+static const uint64_t c = 12345;
+static const uint64_t m = (uint64_t)2<<30;
+static const float fm = (float)m;
 #define GENERATOR_COUNT 4
-__m256i rnd[GENERATOR_COUNT];
-__m256d rndf[GENERATOR_COUNT];
 
 /***
  * Initialization and ask memory for random generator
@@ -45,8 +43,7 @@ __m256d rndf[GENERATOR_COUNT];
 
 uint64_t * rnd_init; // unsigned int de 64 bits
 
-void init_random_numbers() 
-{
+void init_random_numbers() {
     int thread_count = omp_get_num_threads();
     
     // Se calcula el tamaño necesario en memoria
@@ -62,21 +59,6 @@ void init_random_numbers()
         rnd_init[i] = (uint64_t)rand();
     }
 }
-
-/***
- * next function
- ***/
-
- static inline void next(uint64_t * rnd, int i)
- {
-    rnd[i] = _mm256_mul_epi32(rnd[i], a);
-    rnd[i] = _mm256_add_epi64(rnd[i], c);
-    __m256i s1 = _mm256_srl_epi64(rnd[i], s);
-    __m256i s2 = _mm256_sll_epi64(s1, s);
-    rnd[i] = _mm256_xor_si256(rnd[i], s2);
-    float m = (float)((uint64_t)2 << 30);
-    rndf[i] = _mm_set_ps((float)rnd[i][3] / m, (float)rnd[i][2] / m, (float)rnd[i][1] / m, (float)rnd[i][0] / m);
- }
 
 /***
  * Simulation photon function
@@ -98,9 +80,8 @@ static void photon(uint64_t* rnd)
     
     for (;;) 
     {
-        next(rnd,0);
-        rndf[0][0] = (a * rndf[0][0] + c) % m;
-        float t = -logf((float)rndf[0][0] / m);
+        rnd[0] = (a * rnd[0] + c) % m;
+        float t = -logf((float)rnd[0] / fm);
 
         x += t * u;
         y += t * v;
@@ -128,12 +109,10 @@ static void photon(uint64_t* rnd)
         float xi1, xi2;
         do 
         {
-            next(rnd,1);
-            next(rnd,2);
-            rndf[1][0] = (a * rndf[1][0] + c) % m;
-            rndf[2][0] = (a * rnd[2][0] + c) % m; 
-            xi1 = 2.0f * ((float)rndf[1][0] / m) - 1.0f;
-            xi2 = 2.0f * ((float)rndf[2][0] / m) - 1.0f;
+            rnd[1] = (a * rnd[1] + c) % m;
+            rnd[2] = (a * rnd[2] + c) % m; 
+            xi1 = 2.0f * ((float)rnd[1] / fm) - 1.0f;
+            xi2 = 2.0f * ((float)rnd[2] / fm) - 1.0f;
             t = xi1 * xi1 + xi2 * xi2;
         } while (1.0f < t);
         
@@ -146,9 +125,8 @@ static void photon(uint64_t* rnd)
         // roulette
         if (unlikely( weight < 0.001f ))
         {
-            next(rnd,3);
-            rndf[3][0] = (a * rndf[3][0] + c) % m;
-            if (((float)rndf[3][0] / m) > 0.1f)
+            rnd[3] = (a * rnd[3] + c) % m;
+            if (((float)rnd[3] / fm) > 0.1f)
                 break;
             weight /= 0.1f;
         }
@@ -182,15 +160,10 @@ int main(void)
 
     // configure RNG
     srand(SEED);
-    // ++++++++++++++++++++++++++++++++++++++++++++++
-    a = _mm256_set1_epi32(1103515245);
-    c = _mm256_set1_epi64x(12345);
-    s = _mm_set1_epi64x(31);
 
-    for(int g=0; g<GENERATOR_COUNT; g++) {
-        rnd[g] = _mm256_set_epi32(0, rand()>>2, 0, rand()>>2, 0, rand()>>2, 0, rand()>>2);
-    }
-    // ++++++++++++++++++++++++++++++++++++++++++++++
+    //for(int g=0; g<GENERATOR_COUNT; g++) {
+    //    rnd[g] = rand();
+    //}
     
     // start timer
     double start = wtime();
@@ -199,7 +172,7 @@ int main(void)
     //#pragma omp parallel num_threads(4) shared(heat)
     //#pragma omp parallel num_threads(4) // start parallel execution
     
-    #pragma omp parallel num_threads(4) shared(heat,a,c,s)
+    #pragma omp parallel num_threads(4) shared(heat,a,c,m,fm)
     {
         // Constructores
         // opcion 1 -> single
@@ -210,7 +183,7 @@ int main(void)
 
         uint64_t rnd[GENERATOR_COUNT];
 
-        for ( int i = 0; i < GENERATOR_COUNT; i++ )
+        for (int i = 0; i < GENERATOR_COUNT; i++)
         {
             rnd[i] = rnd_init[ GENERATOR_COUNT * omp_get_thread_num() + i ];
         }
