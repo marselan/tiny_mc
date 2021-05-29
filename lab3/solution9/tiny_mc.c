@@ -13,10 +13,10 @@
 #include <assert.h>
 #include <immintrin.h>
 #include <math.h>
+#include <omp.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <omp.h>
 
 char t1[] = "Tiny Monte Carlo by Scott Prahl (http://omlc.ogi.edu)";
 char t2[] = "1 W Point Source Heating in Infinite Isotropic Scattering Medium";
@@ -34,27 +34,27 @@ static __m128i s;
 
 #define GENERATOR_COUNT 4
 
-uint32_t * rnd_init_1;
-uint32_t * rnd_init_2;
+int32_t* rnd_init_1;
+int32_t* rnd_init_2;
 
-void init_random_numbers() {
+void init_random_numbers()
+{
     int thread_count = omp_get_num_threads();
-    
+
     int total_generators = GENERATOR_COUNT * thread_count;
-    int total_random_numbers = total_generators * 8; // 8 uint32 in each __m256
-    int total_size_needed = total_random_numbers * sizeof(uint32_t);
+    int total_random_numbers = total_generators * 4; // 4 uint32 in each __m256
+    int total_size_needed = total_random_numbers * sizeof(int32_t);
 
     rnd_init_1 = malloc(total_size_needed);
     rnd_init_2 = malloc(total_size_needed);
 
-    for(int i=0; i < total_random_numbers; i++) {
-        rnd_init_1[i] = (uint32_t)(rand() >> 2); // lo dividimos por 4 porque rand genera nros mas grandes que nuestro generador congruencial
-        rnd_init_2[i] = (uint32_t)(rand() >> 2);
+    for (int i = 0; i < total_random_numbers; i++) {
+        rnd_init_1[i] = (int32_t)(rand() >> 2); // lo dividimos por 4 porque rand genera nros mas grandes que nuestro generador congruencial
+        rnd_init_2[i] = (int32_t)(rand() >> 2);
     }
-
 }
 
-static inline void next(__m256i * rnd1, __m256i * rnd2, __m256 *rndf, int i)
+static inline void next(__m256i* rnd1, __m256i* rnd2, __m256* rndf, int i)
 {
     rnd1[i] = _mm256_mul_epi32(rnd1[i], a);
     rnd1[i] = _mm256_add_epi64(rnd1[i], c);
@@ -80,7 +80,7 @@ static inline __m256 intrin_sqrt1(__m256* x, __m256* y, __m256* z)
     __m256 xx_vec = _mm256_mul_ps(*x, *x); // xx_vec = [ x1^2 x2^2 x3^2 x4^2 ]
     __m256 yy_vec = _mm256_mul_ps(*y, *y); // yy_vec = [ y1^2 y2^2 y3^2 y4^2 ]
     __m256 zz_vec = _mm256_mul_ps(*z, *z); // zz_vec = [ z1^2 z2^2 z3^2 z4^2 ]
-    
+
     // Add packed single-precision (32-bit) floating-point elements in a and b, and store the results in dst.
     // __m128 _mm_add_ps (__m128 a, __m128 b)
     __m256 partial_1 = _mm256_add_ps(xx_vec, yy_vec); // partial_1 = [ (x1^2+y1^2) (x2^2+y2^2) (x3^2+y3^2) (x4^2+y4^2) ]
@@ -119,13 +119,13 @@ static inline __m256 intrin_sqrt2(__m256* u, __m256* t)
  * Photon
  ***/
 
-static void photon(__m256i * rnd1, __m256i * rnd2, __m256 *rndf)
+static void photon(__m256i* rnd1, __m256i* rnd2, __m256* rndf)
 {
-    
+
     __m256 albedo = _mm256_set1_ps(MU_S / (MU_S + MU_A));
     __m256 shells_per_mfp = _mm256_set1_ps(1e4 / MICRONS_PER_SHELL / (MU_A + MU_S));
 
-    
+
     __m256 x = _mm256_set1_ps(0.0f);
     __m256 y = _mm256_set1_ps(0.0f);
     __m256 z = _mm256_set1_ps(0.0f);
@@ -138,30 +138,30 @@ static void photon(__m256i * rnd1, __m256i * rnd2, __m256 *rndf)
     __m256 one = _mm256_set1_ps(1.0f);
     __m256 two = _mm256_set1_ps(2.0f);
     __m256 ten = _mm256_set1_ps(10.0f);
-    __m256 z1  = _mm256_set1_ps(0.1f);
+    __m256 z1 = _mm256_set1_ps(0.1f);
     __m256 zz1 = _mm256_set1_ps(0.001f);
     __m256 shell_1 = _mm256_set1_ps((float)(SHELLS - 1));
     __m256 all_true = _mm256_cmp_ps(zero, one, _CMP_LT_OQ);
     __m256 t = zero;
 
-    #if __INTEL_COMPILER
+#if __INTEL_COMPILER
     __m256 _one = _mm256_set1_ps(-1.0f);
-    #endif
+#endif
 
     __m256 process_mask = all_true;
     int bit_mask = 0x00FF;
-    
+
 
     for (;;) {
 
         //random_log();
         next(rnd1, rnd2, rndf, 0);
-        #if __INTEL_COMPILER
+#if __INTEL_COMPILER
         t = _mm256_log_ps(rndf[0]);
         t = _mm256_mul_ps(t, _one);
-        #else
+#else
         t = _mm256_set_ps(-logf(rndf[0][7]), -logf(rndf[0][6]), -logf(rndf[0][5]), -logf(rndf[0][4]), -logf(rndf[0][3]), -logf(rndf[0][2]), -logf(rndf[0][1]), -logf(rndf[0][0]));
-        #endif
+#endif
 
         x = _mm256_fmadd_ps(t, u, x);
         y = _mm256_fmadd_ps(t, v, y);
@@ -171,28 +171,28 @@ static void photon(__m256i * rnd1, __m256i * rnd2, __m256 *rndf)
         //    if (shell > SHELLS - 1) {
         //        shell = SHELLS - 1;
         //    }
-        
+
         __m256 sq1 = intrin_sqrt1(&x, &y, &z);
         __m256 shell = _mm256_mul_ps(sq1, shells_per_mfp);
         __m256 shell_cmp = _mm256_cmp_ps(shell, shell_1, _CMP_GT_OQ);
         shell = _mm256_blendv_ps(shell, shell_1, shell_cmp);
         __m256i shell_i = _mm256_cvtps_epi32(shell);
-        uint32_t * shell_index = (uint32_t*)&shell_i;
+        uint32_t* shell_index = (uint32_t*)&shell_i;
 
-        
+
         __m256 a_w = _mm256_mul_ps(albedo, weight);
         __m256 added_heat = _mm256_sub_ps(weight, a_w);
-   
+
         //heat[shell] += added_heat;
-        
+
         int mask = 0x0001;
-        for(int j=0; j<8; j++) {
-            if ( (bit_mask & mask) == mask ) {
+        for (int j = 0; j < 8; j++) {
+            if ((bit_mask & mask) == mask) {
                 heat[shell_index[j]] += added_heat[j];
             }
             mask = mask << 1;
         }
-        
+
         weight = a_w;
 
         // New direction, rejection method
@@ -203,11 +203,11 @@ static void photon(__m256i * rnd1, __m256i * rnd2, __m256 *rndf)
         __m256 lt_one;
         int mm = 0;
         t = _mm256_setzero_ps();
-        
+
         do {
             next(rnd1, rnd2, rndf, 1);
             next(rnd1, rnd2, rndf, 2);
-            
+
             // xi1 = 2.0f * ((float)rnd[1] / fm) - 1.0f;
             // xi2 = 2.0f * ((float)rnd[2] / fm) - 1.0f;
             // t = xi1 * xi1 + xi2 * xi2;
@@ -220,17 +220,17 @@ static void photon(__m256i * rnd1, __m256i * rnd2, __m256 *rndf)
             mm = _mm256_movemask_ps(lt_one) | mm;
             t = _mm256_blendv_ps(t, tt, lt_one);
 
-        } while ( mm != 0x00FF );
+        } while (mm != 0x00FF);
         //} while (1.0f < t);
 
         // u = 2.0f * t - 1.0f;
         u = _mm256_fmsub_ps(two, t, one);
-        
+
         // float uu = sqrtf((1.0f - u * u) / t);
         __m256 uu = intrin_sqrt2(&u, &t);
-        v = _mm256_mul_ps(xi1, uu); 
+        v = _mm256_mul_ps(xi1, uu);
         w = _mm256_mul_ps(xi2, uu);
-     
+
         // e = Energy (weight) low
         // r = Roulette
         __m256 e = _mm256_cmp_ps(zz1, weight, _CMP_GT_OQ);
@@ -243,23 +243,20 @@ static void photon(__m256i * rnd1, __m256i * rnd2, __m256 *rndf)
         e_r = _mm256_and_ps(process_mask, e_r);
         weight = _mm256_blendv_ps(weight, _mm256_mul_ps(weight, ten), e_r);
 
-        __m256 F = _mm256_or_ps( _mm256_and_ps(_e, _r), _mm256_and_ps(_e, r) );
+        __m256 F = _mm256_or_ps(_mm256_and_ps(_e, _r), _mm256_and_ps(_e, r));
         F = _mm256_or_ps(F, _mm256_and_ps(e, _r));
         process_mask = _mm256_and_ps(process_mask, F);
-        bit_mask = _mm256_movemask_ps(process_mask);  
-        if ( bit_mask == 0x0000 ) break;
-            
+        bit_mask = _mm256_movemask_ps(process_mask);
+        if (bit_mask == 0x0000)
+            break;
 
 
-            
         //if (unlikely( weight < 0.001f )) { // roulette
-       //     next(3);
-       //     if (((float)rndf[3]) > 0.1f)
-       //         break;
-       //     weight /= 0.1f;
-       
+        //     next(3);
+        //     if (((float)rndf[3]) > 0.1f)
+        //         break;
+        //     weight /= 0.1f;
     }
-    
 }
 
 static void compute_squares()
@@ -286,7 +283,7 @@ int main(void)
     srand(SEED);
     double elapsed = 0.0f;
 
-    #pragma omp parallel 
+#pragma omp parallel
     {
 
         a = _mm256_set1_epi32(1103515245);
@@ -302,21 +299,20 @@ int main(void)
         init_random_numbers();
 
         // asignar a rnd1 y rnd2 sus valores iniciales
-        int numbers_per_thread = GENERATOR_COUNT * 8;
-        for(int i=0; i<GENERATOR_COUNT; i++) {
-            for(int j=0; j<8; j++) {
-                rnd1[i][j] = rnd_init_1[ numbers_per_thread * omp_get_thread_num() + (i*8) + j ];
-                rnd2[i][j] = rnd_init_2[ numbers_per_thread * omp_get_thread_num() + (i*8) + j ];
-            }
+        int numbers_per_thread = GENERATOR_COUNT * 4;
+        for (int i = 0; i < GENERATOR_COUNT; i++) {
+            int k = numbers_per_thread * omp_get_thread_num() + i * 4;
+            rnd1[i] = _mm256_set_epi32(0, rnd_init_1[k], 0, rnd_init_1[k+1], 0, rnd_init_1[k+2], 0, rnd_init_1[k+3]);
+            rnd2[i] = _mm256_set_epi32(0, rnd_init_2[k], 0, rnd_init_2[k+1], 0, rnd_init_2[k+2], 0, rnd_init_2[k+3]);
         }
-        
+
         double start = wtime();
         #pragma omp for reduction(+:heat)
         for (int i = 0; i < PHOTONS / 8; i++) {
             photon(rnd1, rnd2, rndf);
         }
         compute_squares();
-        
+
         double end = wtime();
         assert(start <= end);
         elapsed = end - start;
