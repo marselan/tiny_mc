@@ -281,9 +281,11 @@ int main(void)
 
     // configure RNG
     srand(SEED);
-    double elapsed = 0.0f;
+    
+    // start timer
+    double start = wtime();
 
-#pragma omp parallel
+    #pragma omp parallel
     {
 
         a = _mm256_set1_epi32(1103515245);
@@ -305,31 +307,35 @@ int main(void)
             rnd1[i] = _mm256_set_epi32(0, rnd_init_1[k], 0, rnd_init_1[k+1], 0, rnd_init_1[k+2], 0, rnd_init_1[k+3]);
             rnd2[i] = _mm256_set_epi32(0, rnd_init_2[k], 0, rnd_init_2[k+1], 0, rnd_init_2[k+2], 0, rnd_init_2[k+3]);
         }
-
-        double start = wtime();
-        #pragma omp for reduction(+:heat)
+        
+        #pragma omp for schedule(auto) reduction(+:heat)
         for (int i = 0; i < PHOTONS / 8; i++) {
             photon(rnd1, rnd2, rndf);
         }
-        compute_squares();
-
-        double end = wtime();
-        assert(start <= end);
-        elapsed = end - start;
-        /*
-        printf("# Radius\tHeat\n");
-        printf("# [microns]\t[W/cm^3]\tError\n");
-        float t = 4.0f * M_PI * powf(MICRONS_PER_SHELL, 3.0f) * PHOTONS / 1e12;
-        
-        for (unsigned int i = 0; i < SHELLS - 1; ++i) {
-            printf("%6.0f\t%12.5f\t%12.5f\n", i * (float)MICRONS_PER_SHELL,
-                heat[i] / t / (i * i + i + 1.0 / 3.0),
-                sqrt(heat2[i] - heat[i] * heat[i] / PHOTONS) / t / (i * i + i + 1.0f / 3.0f));
-        }
-        printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] / PHOTONS);
-        printf("# %lf seconds\n", elapsed);
-    */
+    
+    } // end parallel execution
+    
+    compute_squares();
+    
+    // stop timer
+    double end = wtime();
+    
+    assert(start <= end);
+    double elapsed = end - start;
+    
+    /*
+    printf("# Radius\tHeat\n");
+    printf("# [microns]\t[W/cm^3]\tError\n");
+    float t = 4.0f * M_PI * powf(MICRONS_PER_SHELL, 3.0f) * PHOTONS / 1e12;
+    
+    for (unsigned int i = 0; i < SHELLS - 1; ++i) {
+        printf("%6.0f\t%12.5f\t%12.5f\n", i * (float)MICRONS_PER_SHELL,
+            heat[i] / t / (i * i + i + 1.0 / 3.0),
+            sqrt(heat2[i] - heat[i] * heat[i] / PHOTONS) / t / (i * i + i + 1.0f / 3.0f));
     }
+    printf("# extra\t%12.5f\n\n", heat[SHELLS - 1] / PHOTONS);
+    printf("# %lf seconds\n", elapsed);
+    */
     printf("%d\t%lf\t%lf\n", PHOTONS, elapsed, 1e-3 * PHOTONS / elapsed);
 
     return 0;

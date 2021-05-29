@@ -8,51 +8,47 @@ Begin optimization report for: main(void)
     Report from: Vector optimizations [vec]
 
 
-LOOP BEGIN at tiny_mc.c(306,9)
-
-   LOOP BEGIN at tiny_mc.c(307,13)
-   LOOP END
-
-   LOOP BEGIN at tiny_mc.c(307,13)
-   LOOP END
-
-   LOOP BEGIN at tiny_mc.c(307,13)
-   LOOP END
-
-   LOOP BEGIN at tiny_mc.c(307,13)
-   LOOP END
-LOOP END
-
-LOOP BEGIN at tiny_mc.c(314,9)
-   remark #25460: No loop optimizations reported
-LOOP END
-
-LOOP BEGIN at tiny_mc.c(314,9)
+LOOP BEGIN at tiny_mc.c(264,5) inlined into tiny_mc.c(318,5)
    remark #15300: LOOP WAS VECTORIZED
 LOOP END
 
-LOOP BEGIN at tiny_mc.c(314,9)
-<Remainder loop for vectorization>
-LOOP END
-
-LOOP BEGIN at tiny_mc.c(267,5) inlined into tiny_mc.c(318,9)
-   remark #15300: LOOP WAS VECTORIZED
-LOOP END
-
-LOOP BEGIN at tiny_mc.c(267,5) inlined into tiny_mc.c(318,9)
+LOOP BEGIN at tiny_mc.c(264,5) inlined into tiny_mc.c(318,5)
 <Remainder loop for vectorization>
    remark #15301: REMAINDER LOOP WAS VECTORIZED
 LOOP END
 
-LOOP BEGIN at tiny_mc.c(267,5) inlined into tiny_mc.c(318,9)
+LOOP BEGIN at tiny_mc.c(264,5) inlined into tiny_mc.c(318,5)
 <Remainder loop for vectorization>
 LOOP END
 
-LOOP BEGIN at tiny_mc.c(314,9)
+LOOP BEGIN at tiny_mc.c(305,9)
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(311,9)
    remark #25460: No loop optimizations reported
 LOOP END
 
-LOOP BEGIN at tiny_mc.c(314,9)
+LOOP BEGIN at tiny_mc.c(311,9)
+   remark #25460: No loop optimizations reported
+
+   LOOP BEGIN at tiny_mc.c(311,9)
+      remark #25460: No loop optimizations reported
+   LOOP END
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(311,9)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(311,9)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(311,9)
+   remark #25460: No loop optimizations reported
+LOOP END
+
+LOOP BEGIN at tiny_mc.c(311,9)
 <Remainder>
 LOOP END
 ===========================================================================
