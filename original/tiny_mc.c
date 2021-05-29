@@ -115,7 +115,7 @@ int main(void)
     printf("# %lf seconds\n", elapsed);
     printf("# %lf K photons per second\n", 1e-3 * PHOTONS / elapsed);
     */
-    printf("%d\t%lf\n", PHOTONS, 1e-3 * PHOTONS / elapsed);
+    printf("%6.0d\t%12.5lf\t%12.5lf\n", PHOTONS, elapsed, 1e-3 * PHOTONS / elapsed);
 
     return 0;
 }
