@@ -2,7 +2,6 @@
 #CC = gcc-10
 #CC = clang-11
 CC=icc
-#CC=icx
 
 INC = -I../ -I../../ -I/usr/include/x86_64-linux-gnu
 # Flags GCC
@@ -13,9 +12,6 @@ INC = -I../ -I../../ -I/usr/include/x86_64-linux-gnu
 
 # Flags ICC
 CFLAGS = $(INC) -std=c11 -Wall -Wextra -O3 -mavx2 -mfma -fopenmp -qopt-report=1 -qopt-report-phase=vec
-
-# Flags ICX
-#CFLAGS = $(INC) -std=c11 -march=native -Wall -Wextra -O3 -mavx2 -mfma -qopt-report=1 -qopt-report-phase=vec
 
 LDFLAGS = -lm
 
