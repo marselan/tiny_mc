@@ -1,0 +1,42 @@
+rm -f tiny_mc *.o
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -fopenmp-use-tls -fopenmp -march=native -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize    -c -o tiny_mc.o tiny_mc.c
+
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -fopenmp-use-tls -fopenmp -march=native -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize    -c -o wtime.o wtime.c
+clang-11 -I../ -I../../ -std=c11 -Wall -Wextra -O3 -fopenmp-use-tls -fopenmp -march=native -mavx2 -Rpass=loop-vectorize -Rpass=missed=loopvectorize -Rpass-analysis=loop-vectorize  -o tiny_mc tiny_mc.o wtime.o -lm
+
+++++++++++++++++++ FOR 4 THREADS ++++++++++++++++++
+
+
+ Performance counter stats for './tiny_mc' (20 runs):
+
+          5.770,84 msec cpu-clock                 #    3,944 CPUs utilized            ( +-  0,24% )
+    17.831.469.182      cpu-cycles                #    3,090 GHz                      ( +-  0,22% )  (75,05%)
+    19.052.478.242      instructions              #    1,07  insn per cycle           ( +-  0,06% )  (75,05%)
+       757.573.328      cache-references          #  131,276 M/sec                    ( +-  0,31% )  (75,05%)
+           309.858      cache-misses              #    0,041 % of all cache refs      ( +-  4,42% )  (75,05%)
+
+           1,46305 +- 0,00420 seconds time elapsed  ( +-  0,29% )
+
+
+++++++++++++++++++ RESULTADOS ++++++++++++++++++
+
+2097152      1.50112      1397.06283
+2097152      1.44388      1452.43858
+2097152      1.47074      1425.91642
+2097152      1.44855      1447.76177
+2097152      1.42792      1468.67756
+2097152      1.47177      1424.91626
+2097152      1.47393      1422.83046
+2097152      1.47648      1420.37343
+2097152      1.47327      1423.47094
+2097152      1.47241      1424.29489
+2097152      1.47403      1422.73180
+2097152      1.46603      1430.49420
+2097152      1.48082      1416.21180
+2097152      1.45206      1444.26363
+2097152      1.46154      1434.88928
+2097152      1.45168      1444.63929
+2097152      1.44382      1452.50161
+2097152      1.47568      1421.14453
+2097152      1.43321      1463.25809
+2097152      1.43973      1456.62598

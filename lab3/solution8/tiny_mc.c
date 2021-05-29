@@ -172,7 +172,7 @@ int main(void)
     //#pragma omp parallel num_threads(4) shared(heat)
     //#pragma omp parallel num_threads(4) // start parallel execution
     
-    #pragma omp parallel num_threads(28) shared(heat,a,c,m,fm)
+    #pragma omp parallel shared(heat,a,c,m,fm)
     {
         // Constructores
         // opcion 1 -> single
@@ -192,13 +192,13 @@ int main(void)
         int chunksize = PHOTONS>>4; // divido por 2^4
         // opcion 1 -> schedule(static,chunksize)
         // opcion 2 -> schedule(dynamic,chunksize)
-        // opcion 3 -> schedule(guided) reduction(+:heat)
-        // opcion 4 -> schedule(auto) reduction(+:heat)
+        // opcion 3 -> schedule(guided)
+        // opcion 4 -> schedule(auto)
         
         // Memoria privada y juntar - contra False sharing
         // reduction(+:heat)
         
-        #pragma omp for schedule(static,chunksize) reduction(+:heat)
+        #pragma omp for schedule(dynamic,chunksize) reduction(+:heat)
         for (unsigned int i = 0; i < PHOTONS; ++i)
         {
             photon(rnd);
