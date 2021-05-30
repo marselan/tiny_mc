@@ -1,0 +1,41 @@
+rm -f tiny_mc *.o
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -Wopenmp-simd -O3 -fopenmp -ffast-math -march=native -mavx2 -ftree-vectorize   -c -o tiny_mc.o tiny_mc.c
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -Wopenmp-simd -O3 -fopenmp -ffast-math -march=native -mavx2 -ftree-vectorize   -c -o wtime.o wtime.c
+gcc-10 -I../ -I../../ -std=c11 -Wall -Wextra -Wopenmp-simd -O3 -fopenmp -ffast-math -march=native -mavx2 -ftree-vectorize -o tiny_mc tiny_mc.o wtime.o -lm
+
+++++++++++++++++++ FOR 24 THREADS ++++++++++++++++++
+
+
+ Performance counter stats for './tiny_mc' (20 runs):
+
+          31494.84 msec cpu-clock                 #   15.220 CPUs utilized            ( +-  1.58% )
+       90682920145      cpu-cycles                #    2.879 GHz                      ( +-  1.60% )
+       17239740327      instructions              #    0.19  insn per cycle           ( +-  0.04% )
+         389519929      cache-references          #   12.368 M/sec                    ( +-  0.53% )
+         158634516      cache-misses              #   40.726 % of all cache refs      ( +-  3.80% )
+
+            2.0694 +- 0.0269 seconds time elapsed  ( +-  1.30% )
+
+
+++++++++++++++++++ RESULTADOS ++++++++++++++++++
+
+2097152	     2.13157	   983.85224
+2097152	     2.08575	  1005.46619
+2097152	     2.12026	   989.10204
+2097152	     2.05194	  1022.03589
+2097152	     1.95145	  1074.66101
+2097152	     2.12106	   988.72853
+2097152	     2.19937	   953.52249
+2097152	     2.19604	   954.97091
+2097152	     2.13190	   983.69977
+2097152	     2.10155	   997.90640
+2097152	     2.14606	   977.21219
+2097152	     1.72844	  1213.32402
+2097152	     1.91643	  1094.30314
+2097152	     2.13395	   982.75443
+2097152	     1.88771	  1110.95016
+2097152	     2.15144	   974.76703
+2097152	     2.16436	   968.94672
+2097152	     2.05311	  1021.45034
+2097152	     2.10712	   995.26814
+2097152	     1.94982	  1075.56158

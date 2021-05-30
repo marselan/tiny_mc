@@ -1,0 +1,46 @@
+rm -f tiny_mc *.o
+icc -I../ -I../../ -I/usr/include/x86_64-linux-gnu -std=c11 -Wall -Wextra -O3 -mavx2 -mfma -fopenmp -qopt-report=1 -qopt-report-phase=vec   -c -o tiny_mc.o tiny_mc.c
+icc: remark #10397: optimization reports are generated in *.optrpt files in the output location
+remark #11074: Inlining inhibited by limit max-size 
+remark #11076: To get full report use -qopt-report=4 -qopt-report-phase ipo
+icc -I../ -I../../ -I/usr/include/x86_64-linux-gnu -std=c11 -Wall -Wextra -O3 -mavx2 -mfma -fopenmp -qopt-report=1 -qopt-report-phase=vec   -c -o wtime.o wtime.c
+icc: remark #10397: optimization reports are generated in *.optrpt files in the output location
+icc -I../ -I../../ -I/usr/include/x86_64-linux-gnu -std=c11 -Wall -Wextra -O3 -mavx2 -mfma -fopenmp -qopt-report=1 -qopt-report-phase=vec -o tiny_mc tiny_mc.o wtime.o -lm
+icc: remark #10397: optimization reports are generated in *.optrpt files in the output location
+
+++++++++++++++++++ FOR 4 THREADS ++++++++++++++++++
+
+
+ Performance counter stats for './tiny_mc' (20 runs):
+
+           6117.05 msec cpu-clock                 #    3.975 CPUs utilized            ( +-  1.28% )
+       17922392859      cpu-cycles                #    2.930 GHz                      ( +-  1.29% )
+       11451253198      instructions              #    0.64  insn per cycle           ( +-  0.01% )
+         105230262      cache-references          #   17.203 M/sec                    ( +-  0.38% )
+             29035      cache-misses              #    0.028 % of all cache refs      ( +-  5.55% )
+
+            1.5390 +- 0.0197 seconds time elapsed  ( +-  1.28% )
+
+
+++++++++++++++++++ RESULTADOS ++++++++++++++++++
+
+2097152	1.506968	1391.636397
+2097152	1.658889	1264.190397
+2097152	1.454662	1441.676096
+2097152	1.474645	1422.140710
+2097152	1.467670	1428.899239
+2097152	1.472588	1424.126460
+2097152	1.548703	1354.134186
+2097152	1.515752	1383.571808
+2097152	1.439263	1457.101076
+2097152	1.628331	1287.915426
+2097152	1.654323	1267.679933
+2097152	1.439309	1457.054840
+2097152	1.642436	1276.854242
+2097152	1.691359	1239.921452
+2097152	1.444176	1452.144816
+2097152	1.567574	1337.832453
+2097152	1.648334	1272.285806
+2097152	1.439834	1456.523913
+2097152	1.479189	1417.771720
+2097152	1.514692	1384.540377
