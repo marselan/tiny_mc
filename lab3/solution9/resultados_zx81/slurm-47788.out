@@ -1,0 +1,46 @@
+rm -f tiny_mc *.o
+icc -I../ -I../../ -I/usr/include/x86_64-linux-gnu -std=c11 -Wall -Wextra -O3 -mavx2 -mfma -fopenmp -qopt-report=1 -qopt-report-phase=vec   -c -o tiny_mc.o tiny_mc.c
+icc: remark #10397: optimization reports are generated in *.optrpt files in the output location
+remark #11074: Inlining inhibited by limit max-size 
+remark #11076: To get full report use -qopt-report=4 -qopt-report-phase ipo
+icc -I../ -I../../ -I/usr/include/x86_64-linux-gnu -std=c11 -Wall -Wextra -O3 -mavx2 -mfma -fopenmp -qopt-report=1 -qopt-report-phase=vec   -c -o wtime.o wtime.c
+icc: remark #10397: optimization reports are generated in *.optrpt files in the output location
+icc -I../ -I../../ -I/usr/include/x86_64-linux-gnu -std=c11 -Wall -Wextra -O3 -mavx2 -mfma -fopenmp -qopt-report=1 -qopt-report-phase=vec -o tiny_mc tiny_mc.o wtime.o -lm
+icc: remark #10397: optimization reports are generated in *.optrpt files in the output location
+
+++++++++++++++++++ FOR 20 THREADS ++++++++++++++++++
+
+
+ Performance counter stats for './tiny_mc' (20 runs):
+
+          51678.13 msec cpu-clock                 #   19.659 CPUs utilized            ( +-  2.86% )
+      144157326291      cpu-cycles                #    2.790 GHz                      ( +-  2.88% )
+       11854000481      instructions              #    0.08  insn per cycle           ( +-  0.59% )
+         123735812      cache-references          #    2.394 M/sec                    ( +-  0.60% )
+          54247408      cache-misses              #   43.841 % of all cache refs      ( +-  0.86% )
+
+            2.6287 +- 0.0719 seconds time elapsed  ( +-  2.73% )
+
+
+++++++++++++++++++ RESULTADOS ++++++++++++++++++
+
+2097152	2.267751	924.771619
+2097152	2.756818	760.714643
+2097152	2.378831	881.589228
+2097152	2.555749	820.562697
+2097152	2.415408	868.239186
+2097152	2.248925	932.513287
+2097152	3.148899	665.995274
+2097152	2.583449	811.764583
+2097152	2.332954	898.925430
+2097152	2.392036	876.722536
+2097152	2.487080	843.218530
+2097152	2.338114	896.941645
+2097152	2.659850	788.447508
+2097152	2.530568	828.727728
+2097152	3.179993	659.483239
+2097152	2.379985	881.161975
+2097152	2.938686	713.635948
+2097152	2.594868	808.192219
+2097152	3.045569	688.591125
+2097152	3.253308	644.621503
