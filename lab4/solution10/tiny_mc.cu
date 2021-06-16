@@ -15,21 +15,22 @@ static void checkCudaCall(cudaError_t statusCode) {
     }
 }
 
-__device__ float next(uint64_t* randomNumber) {
+__device__ float next(uint64_t& randomNumber) {
 
     uint64_t a = 1103515245;
     uint64_t c = 12345;
     uint64_t m = (uint64_t)2<<30;
     float fm = (float)m;
 
-    *randomNumber = *randomNumber * a + c;
-    uint64_t s = *randomNumber >> 31;
+    randomNumber = randomNumber * a + c;
+    uint64_t s = randomNumber >> 31;
     s = s << 31;
-    *randomNumber = *randomNumber ^ s;
-    return (float)*randomNumber / fm;
+    randomNumber = randomNumber ^ s;
+    return (float)randomNumber / fm;
 }
 
-__global__ void photon(uint64_t* rnd, int threadCount) {
+
+__global__ void photon(uint64_t* __restrict__ rnd, float* __restrict__ heat, int threadCount) {
     uint i = blockIdx.x * blockDim.x + threadIdx.x;
 
     if(i<threadCount) {
@@ -51,7 +52,7 @@ __global__ void photon(uint64_t* rnd, int threadCount) {
             float weight = 1.0f;
 
             for (;;) {
-                float t = -logf(next(&randomNumber)); /* move */
+                float t = -logf(next(randomNumber)); /* move */
                 x += t * u;
                 y += t * v;
                 z += t * w;
@@ -60,15 +61,14 @@ __global__ void photon(uint64_t* rnd, int threadCount) {
                 if (shell > SHELLS - 1) {
                     shell = SHELLS - 1;
                 }
-                //heat[shell] += (1.0f - albedo) * weight;
-                //heat2[shell] += (1.0f - albedo) * (1.0f - albedo) * weight * weight; /* add up squares */
+                atomicAdd(&heat[shell], (1.0f - albedo) * weight);
                 weight *= albedo;
 
                 /* New direction, rejection method */
                 float xi1, xi2;
                 do {
-                    xi1 = 2.0f * next(&randomNumber) - 1.0f;
-                    xi2 = 2.0f * next(&randomNumber) - 1.0f;
+                    xi1 = 2.0f * next(randomNumber) - 1.0f;
+                    xi2 = 2.0f * next(randomNumber) - 1.0f;
                     t = xi1 * xi1 + xi2 * xi2;
                 } while (1.0f < t);
                 u = 2.0f * t - 1.0f;
@@ -76,7 +76,7 @@ __global__ void photon(uint64_t* rnd, int threadCount) {
                 w = xi2 * sqrtf((1.0f - u * u) / t);
 
                 if (weight < 0.001f) { /* roulette */
-                    if (next(&randomNumber) > 0.1f) {
+                    if (next(randomNumber) > 0.1f) {
                         // exit
                         break;
                     }
@@ -88,6 +88,12 @@ __global__ void photon(uint64_t* rnd, int threadCount) {
     }
 }
 
+__host__ void computeHeat2(float * __restrict__ heat, float * __restrict__ heat2) {
+    for(int i=0; i<SHELLS; i++) {
+        heat2[i] = heat[i] * heat[i];
+    }
+}
+
 int main() {
 
     double start = wtime();
@@ -96,18 +102,24 @@ int main() {
     dim3 grid((PHOTONS + block.x - 1) / block.x / PHOTONS_PER_THREAD);
 
     uint64_t* rnd = nullptr;
+    float* heat = nullptr;
+    float heat2[SHELLS];
+
 
     int threadCount = PHOTONS / PHOTONS_PER_THREAD;
     checkCudaCall( cudaMallocManaged(&rnd, threadCount * sizeof(uint64_t) ) );
+    checkCudaCall( cudaMallocManaged(&heat, SHELLS * sizeof(float) ) );
 
     srand(SEED);
     for(int i=0; i<threadCount; i++) {
         rnd[i] = rand()>>2;
     }
 
-    photon<<<grid, block>>>(rnd, threadCount);
+    photon<<<grid, block>>>(rnd, heat, threadCount);
     checkCudaCall(cudaGetLastError());
     checkCudaCall(cudaDeviceSynchronize());
+
+    computeHeat2(heat, heat2);
 
     double end = wtime();
     double elapsed = end - start;
@@ -115,6 +127,7 @@ int main() {
     cout<<PHOTONS<<"\t"<<elapsed<<"\t"<<(int)(1e-3 * PHOTONS / elapsed)<<endl;
 
     cudaFree(rnd);
+    cudaFree(heat);
 
     return 0;
 }
