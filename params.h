@@ -7,7 +7,15 @@
 #endif
 
 #ifndef PHOTONS
-#define PHOTONS 2097152 // 32K photons
+#define PHOTONS 2097152 // photons
+#endif
+
+#ifndef BLOCK_SIZE
+#define BLOCK_SIZE 1024
+#endif
+
+#ifndef PHOTONS_PER_THREAD
+#define PHOTONS_PER_THREAD 8
 #endif
 
 #ifndef MU_A
