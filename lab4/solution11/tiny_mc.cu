@@ -96,6 +96,8 @@ __global__ void photon(uint64_t* __restrict__ rnd, float* __restrict__ heat, int
             }
         }
 
+        __syncthreads();
+
         if(tid == 0) {
             for(int k=0; k<SHELLS; k++) {
                 atomicAdd(&heat[k], block_heat[k]);
