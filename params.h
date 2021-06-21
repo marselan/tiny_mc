@@ -11,7 +11,7 @@
 #endif
 
 #ifndef BLOCK_SIZE
-#define BLOCK_SIZE 1024
+#define BLOCK_SIZE 128
 #endif
 
 #ifndef PHOTONS_PER_THREAD
