@@ -77,7 +77,7 @@ __global__ void photon(curandState *state, float* __restrict__ heat, uint thread
 					shell = SHELLS - 1;
 				}
 	
-				atomicAdd(&heat[shell], (1.0f - albedo) * weight);
+				atomicAdd(&block_heat[shell], (1.0f - albedo) * weight);
 				weight *= albedo;
 
 				/* New direction, rejection method */
